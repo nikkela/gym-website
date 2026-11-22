@@ -11,3 +11,7 @@ database_id = "f5ba57b7-e41e-4b67-8282-6b6914c097e8"
 migrations_dir = "migrations"
 
 # The owner PIN is a secret, set it with:  npx wrangler pages secret put OWNER_PIN
+
+[vars]
+# "1" = test mode: tapping Member or Owner logs in without a PIN. Set to "0" before real customers use the app.
+DEMO_LOGIN = "1"
