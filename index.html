@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Iron Pulse Gym — Strength, Cardio & Personal Training</title>
+<meta name="description" content="Iron Pulse Gym: strength training, cardio, CrossFit, yoga, Zumba and personal training. Modern equipment, certified trainers, affordable memberships. Book a free trial.">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<meta property="og:title" content="Iron Pulse Gym — Train hard. Live strong.">
+<meta property="og:description" content="Modern gym with certified trainers. Book your free trial on WhatsApp.">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{--bg:#0b0b0c;--fg:#f5f5f7;--mute:#a1a1a6;--card:#161618;--card2:#1f1f22;--line:#2c2c30;--acc:#d4ff3a;--acc2:#ff5a1f;--ink:#0b0b0c}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--acc)}
+img{display:block;max-width:100%}
+.w{max-width:1120px;margin:auto}
+/* nav */
+nav.top{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:0 max(16px,calc(50% - 560px));height:60px;background:rgba(11,11,12,.8);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--line);font-size:14px}
+.brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-.02em;color:var(--fg);text-decoration:none;text-transform:uppercase}
+.brand svg{width:32px;height:32px}
+.brand em{font-style:normal;color:var(--acc)}
+nav.top .links{display:flex;gap:26px;align-items:center}
+nav.top .links a{color:var(--fg);text-decoration:none;opacity:.75}
+nav.top .links a:hover{opacity:1}
+nav.top .links .pill{background:var(--acc);color:var(--ink);opacity:1;padding:8px 18px;border-radius:980px;font-weight:700}
+@media(max-width:760px){nav.top .links a:not(.pill){display:none}}
+/* type */
+section.s{padding:100px 16px}
+.c{text-align:center}
+h1{font-size:clamp(46px,9vw,112px);font-weight:900;letter-spacing:-.045em;line-height:.95;text-transform:uppercase}
+h2{font-size:clamp(34px,5.6vw,64px);font-weight:900;letter-spacing:-.04em;line-height:1;text-transform:uppercase}
+.eyebrow{font-size:13px;font-weight:700;color:var(--acc);margin-bottom:14px;letter-spacing:.14em;text-transform:uppercase}
+.sub{font-size:clamp(17px,2vw,21px);color:var(--mute);margin-top:16px;max-width:60ch}
+.c .sub{margin-left:auto;margin-right:auto}
+.hl{color:var(--acc)}
+.out{-webkit-text-stroke:2px var(--fg);color:transparent}
+.btns{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap}
+.c .btns{justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 28px;border-radius:980px;background:var(--acc);color:var(--ink);text-decoration:none;font-size:16px;font-weight:800;border:0;cursor:pointer;text-transform:uppercase;letter-spacing:.02em;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.o{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(10px)}
+/* photo frame — gradient shows if the image can't load */
+.ph{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--g1,#2a2a2e),var(--g2,#0b0b0c))}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* hero */
+.hero{position:relative;min-height:min(94vh,920px);display:flex;align-items:center;padding:80px 16px;--g1:#20240e;--g2:#0b0b0c}
+.hero>.ph{position:absolute;inset:0}
+.hero>.ph img{animation:kb 20s ease-out both;filter:grayscale(.35) contrast(1.1)}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,12,.95) 0,rgba(11,11,12,.7) 45%,rgba(11,11,12,.2) 100%),linear-gradient(0deg,var(--bg) 0,transparent 30%)}
+.hero .w{position:relative;z-index:1;width:100%}
+.hero .badges{display:flex;gap:28px;margin-top:54px;flex-wrap:wrap}
+.hero .badges div b{display:block;font-size:34px;font-weight:900;letter-spacing:-.03em;color:var(--acc)}
+.hero .badges div span{font-size:13px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+/* marquee */
+.mqw{overflow:hidden;padding:12px 0}
+.mq{background:var(--acc);color:var(--ink);overflow:hidden;white-space:nowrap;padding:14px 0;font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:.02em;transform:rotate(-1.5deg);margin:0 -20px}
+.mq div{display:inline-block;animation:mq 30s linear infinite}
+.mq span{margin:0 22px}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* programs */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:52px}
+.prog{border-radius:24px;min-height:340px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;grid-column:span 2}
+.prog.wide{grid-column:span 3;min-height:400px}
+.prog::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.88) 0,rgba(0,0,0,.3) 60%,rgba(0,0,0,.05) 100%)}
+.prog>*:not(img){position:relative;z-index:1}
+.prog b{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}
+.prog h3{font-size:clamp(24px,2.8vw,32px);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin:6px 0 8px;text-transform:uppercase}
+.prog p{color:rgba(255,255,255,.78);font-size:16px;max-width:36ch}
+.prog img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.prog:hover img{transform:scale(1.06)}
+@media(max-width:900px){.prog,.prog.wide{grid-column:span 3;min-height:320px}}
+@media(max-width:600px){.prog,.prog.wide{grid-column:span 6;min-height:290px}}
+/* why */
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:52px}
+.f{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px}
+.f i{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:rgba(212,255,58,.12);color:var(--acc);font-style:normal;font-size:24px;margin-bottom:16px}
+.f h3{font-size:19px;margin-bottom:6px;letter-spacing:-.01em}
+.f p{color:var(--mute);font-size:15px}
+/* plans */
+.toggle{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:980px;padding:4px;margin-top:34px}
+.toggle button{border:0;background:none;padding:9px 20px;border-radius:980px;cursor:pointer;font-weight:700;font-size:14px;color:var(--mute)}
+.toggle button.on{background:var(--fg);color:var(--ink)}
+.toggle small{color:var(--acc2);font-weight:800;margin-left:4px}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:36px;text-align:left}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:32px;display:flex;flex-direction:column}
+.plan.top{background:linear-gradient(160deg,#25290f,var(--card) 55%);border-color:var(--acc)}
+.plan .tag{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--acc);color:var(--ink);padding:5px 10px;border-radius:6px;margin-bottom:12px}
+.plan h3{font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:-.01em}
+.plan .price{font-size:48px;font-weight:900;letter-spacing:-.04em;margin:10px 0 2px}
+.plan .price small{font-size:16px;color:var(--mute);font-weight:600}
+.plan .per{color:var(--mute);font-size:14px;min-height:21px}
+.plan ul{list-style:none;padding:0;margin:20px 0 26px;font-size:15px;color:#d1d1d6}
+.plan li{padding:9px 0;border-top:1px solid var(--line)}
+.plan li::before{content:"✓";color:var(--acc);font-weight:900;margin-right:10px}
+.plan li.no{color:#5c5c62}.plan li.no::before{content:"–";color:#5c5c62}
+.plan .btn{margin-top:auto;justify-content:center}
+.plan:not(.top) .btn{background:var(--card2);color:var(--fg);border:1px solid var(--line)}
+.note{font-size:14px;color:var(--mute);margin-top:22px}
+/* trainers */
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:52px}
+.tr{border-radius:24px;overflow:hidden;background:var(--card);border:1px solid var(--line)}
+.tr .ph{aspect-ratio:4/5}
+.tr .ph img{filter:grayscale(1);transition:filter .5s}
+.tr:hover .ph img{filter:none}
+.tr div.t{padding:20px 22px}
+.tr h3{font-size:20px;font-weight:800}
+.tr p{color:var(--acc);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.tr small{display:block;color:var(--mute);font-size:14px;margin-top:8px}
+/* schedule */
+.days{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:34px}
+.chip{border:1px solid var(--line);background:var(--card);padding:9px 18px;border-radius:980px;cursor:pointer;font-size:14px;font-weight:700}
+.chip.on{background:var(--acc);color:var(--ink);border-color:var(--acc)}
+.sched{max-width:760px;margin:26px auto 0;display:grid;gap:10px;text-align:left}
+.slot{display:grid;grid-template-columns:120px 1fr auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 20px}
+.slot time{font-weight:800;font-variant-numeric:tabular-nums}
+.slot b{display:block}
+.slot span{color:var(--mute);font-size:14px}
+.slot em{font-style:normal;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:5px 10px;border-radius:8px;background:rgba(255,90,31,.14);color:var(--acc2)}
+@media(max-width:560px){.slot{grid-template-columns:1fr auto}.slot time{grid-column:1/-1}}
+.hours{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;max-width:760px;margin:30px auto 0}
+.hours div{background:var(--card2);border-radius:18px;padding:18px;text-align:center}
+.hours b{display:block;font-size:20px}.hours span{color:var(--mute);font-size:14px}
+/* BMI */
+.bmi{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:820px){.bmi{grid-template-columns:1fr}}
+.calc{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:30px;display:grid;gap:14px}
+.calc .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label.l{font-size:13px;color:var(--mute);font-weight:700;text-transform:uppercase;letter-spacing:.06em;display:grid;gap:6px}
+.field{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--bg);font-size:16px}
+.field:focus{outline:2px solid var(--acc);border-color:transparent}
+.res{border-radius:18px;background:var(--bg);padding:20px;text-align:center}
+.res b{font-size:52px;font-weight:900;letter-spacing:-.04em;display:block;line-height:1.1}
+.res span{color:var(--mute);font-size:15px}
+.bar{height:10px;border-radius:10px;background:linear-gradient(90deg,#5ac8fa 0,#30d158 30%,#ffd60a 60%,#ff453a 100%);position:relative;margin-top:16px}
+.bar i{position:absolute;top:-5px;width:4px;height:20px;background:#fff;border-radius:3px;transition:left .4s;left:0}
+/* reviews */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:52px}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--card);border-radius:22px;padding:24px 14px}
+.stat b{display:block;font-size:clamp(30px,4.5vw,48px);font-weight:900;letter-spacing:-.04em;color:var(--acc);line-height:1}
+.stat span{color:var(--mute);font-size:14px}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;text-align:left}
+.rev{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:16px}
+.rev .stars{color:#ffd60a;letter-spacing:2px}
+.rev q{font-size:18px;line-height:1.45;font-weight:500;quotes:"“" "”"}
+.rev .who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.rev .av{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:900;color:var(--ink)}
+.rev .who b{display:block;font-size:15px}.rev .who small{color:var(--acc);font-size:13px;font-weight:700}
+@media(max-width:860px){.reviews{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:20px -16px 0;padding:0 16px 8px;scrollbar-width:none}.reviews::-webkit-scrollbar{display:none}.rev{flex:0 0 84%;scroll-snap-align:center}}
+/* trial form */
+.join{position:relative;border-radius:32px;overflow:hidden;padding:64px 28px;--g1:#20240e;--g2:#0b0b0c}
+.join>.ph{position:absolute;inset:0}
+.join>.ph img{opacity:.35;filter:grayscale(1)}
+.join>*:not(.ph){position:relative}
+form.book{max-width:560px;margin:34px auto 0;display:grid;gap:12px;text-align:left}
+form.book .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){form.book .two,.calc .two{grid-template-columns:1fr}}
+form.book .field{background:rgba(11,11,12,.85)}
+form.book .btn{width:100%;justify-content:center}
+/* faq */
+.faq{max-width:760px;margin:40px auto 0;text-align:left}
+.faq details{border-bottom:1px solid var(--line);padding:20px 4px}
+.faq summary{cursor:pointer;font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--acc);font-size:24px;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq p{color:var(--mute);margin-top:10px}
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:52px}
+@media(max-width:820px){.contact{grid-template-columns:1fr}}
+.map{border-radius:24px;overflow:hidden;min-height:320px;border:1px solid var(--line);background:var(--card)}
+.map iframe{width:100%;height:100%;min-height:320px;border:0;filter:grayscale(1) invert(.9) contrast(.9)}
+.info{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:30px;display:grid;gap:18px;align-content:start}
+.info div b{display:block;font-size:13px;color:var(--acc);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.info a{color:var(--fg)}
+footer.ft{padding:40px 16px calc(100px + env(safe-area-inset-bottom));text-align:center;font-size:13px;color:var(--mute);border-top:1px solid var(--line)}
+footer.ft .brand{justify-content:center;margin-bottom:12px}
+/* floating WhatsApp */
+.wa{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:30;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.wa svg{width:30px;height:30px;fill:#fff}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--fg);color:var(--ink);padding:12px 22px;border-radius:980px;font-size:15px;font-weight:700;z-index:99}
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.show{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.hero>.ph img,.mq div{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="mark" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#d4ff3a"/><g fill="#0b0b0c"><rect x="9" y="22" width="7" height="20" rx="2"/><rect x="48" y="22" width="7" height="20" rx="2"/><rect x="16" y="26" width="6" height="12" rx="2"/><rect x="42" y="26" width="6" height="12" rx="2"/><rect x="22" y="30" width="20" height="4" rx="1"/></g></symbol></svg>
+
+<nav class="top">
+<a class="brand" href="#top" aria-label="Iron Pulse Gym home"><svg aria-hidden="true"><use href="#mark"/></svg>Iron<em>Pulse</em></a>
+<div class="links"><a href="#programs">Programs</a><a href="#plans">Membership</a><a href="#trainers">Trainers</a><a href="#schedule">Timetable</a><a href="#contact">Contact</a><a class="pill" href="#join">Free trial</a></div>
+</nav>
+
+<header class="hero" id="top">
+<div class="ph" data-photo="hero"></div>
+<div class="w">
+<p class="eyebrow">Iron Pulse Gym · Open 5 AM – 11 PM</p>
+<h1>Train hard.<br><span class="hl">Live strong.</span></h1>
+<p class="sub">Modern equipment, certified trainers and plans that fit your budget. Your first workout is on us.</p>
+<div class="btns"><a class="btn" href="#join">Book free trial →</a><a class="btn o" href="#plans">See membership</a></div>
+<div class="badges">
+<div><b>1,200+</b><span>Active members</span></div>
+<div><b>12</b><span>Expert trainers</span></div>
+<div><b>8,000</b><span>Sq. ft. floor</span></div>
+</div>
+</div>
+</header>
+
+<div class="mqw" aria-hidden="true"><div class="mq"><div id="mq"></div></div></div>
+
+<section class="s" id="programs"><div class="w">
+<p class="eyebrow rv">Programs</p>
+<h2 class="rv">Find your <span class="out">fit.</span></h2>
+<p class="sub rv">From your first push-up to your next personal record, there's a program for every goal.</p>
+<div class="bento" id="bento"></div>
+</div></section>
+
+<section class="s" style="background:#101012"><div class="w c">
+<p class="eyebrow rv">Why Iron Pulse</p>
+<h2 class="rv">Built for results.</h2>
+<div class="why">
+<div class="f rv"><i>🏋️</i><h3>Premium equipment</h3><p>Imported machines, free weights up to 50 kg and a dedicated deadlift platform.</p></div>
+<div class="f rv"><i>🧑‍🏫</i><h3>Certified trainers</h3><p>Every member gets a free fitness assessment and a starter workout plan.</p></div>
+<div class="f rv"><i>🥗</i><h3>Diet guidance</h3><p>Simple Indian diet charts for fat loss, muscle gain and healthy living.</p></div>
+<div class="f rv"><i>❄️</i><h3>AC & clean</h3><p>Fully air-conditioned, sanitised daily, with lockers, showers and RO water.</p></div>
+<div class="f rv"><i>👩</i><h3>Ladies batch</h3><p>Separate morning and evening slots with women trainers.</p></div>
+<div class="f rv"><i>🅿️</i><h3>Free parking</h3><p>Safe two-wheeler and car parking right outside the gym.</p></div>
+</div>
+</div></section>
+
+<section class="s c" id="plans"><div class="w">
+<p class="eyebrow rv">Membership</p>
+<h2 class="rv">Simple plans.</h2>
+<p class="sub rv">No joining-fee surprises. Pay longer, save more.</p>
+<div class="toggle rv" id="toggle" role="tablist">
+<button data-p="1" class="on">Monthly</button><button data-p="3">Quarterly<small>−10%</small></button><button data-p="12">Yearly<small>−25%</small></button>
+</div>
+<div class="plans" id="plans-grid"></div>
+<p class="note rv">Couple & student discounts available. Prices include GST.</p>
+</div></section>
+
+<section class="s" id="trainers" style="background:#101012"><div class="w">
+<p class="eyebrow rv">Trainers</p>
+<h2 class="rv">Coached by <span class="hl">pros.</span></h2>
+<p class="sub rv">Certified, experienced and focused on helping you train safely.</p>
+<div class="team" id="team"></div>
+</div></section>
+
+<section class="s c" id="schedule"><div class="w">
+<p class="eyebrow rv">Timetable</p>
+<h2 class="rv">Group classes.</h2>
+<p class="sub rv">Included in Pro and Elite plans. Pick a day to see the classes.</p>
+<div class="days" id="days"></div>
+<div class="sched" id="sched"></div>
+<div class="hours">
+<div><b>5:00 AM – 11:00 PM</b><span>Monday – Saturday</span></div>
+<div><b>6:00 AM – 12:00 PM</b><span>Sunday</span></div>
+</div>
+</div></section>
+
+<section class="s" id="bmi" style="background:#101012"><div class="w bmi">
+<div>
+<p class="eyebrow rv">Free tool</p>
+<h2 class="rv">Check your BMI.</h2>
+<p class="sub rv">Body Mass Index is a quick first check. Our trainers do a full body-composition test on your free trial day.</p>
+<div class="btns rv"><a class="btn" href="#join">Get full assessment</a></div>
+</div>
+<form class="calc rv" id="bmiForm" onsubmit="return false">
+<div class="two">
+<label class="l">Height (cm)<input class="field" type="number" id="h" value="170" min="100" max="230" inputmode="decimal"></label>
+<label class="l">Weight (kg)<input class="field" type="number" id="kg" value="70" min="25" max="250" inputmode="decimal"></label>
+</div>
+<div class="res"><b id="bmiVal">24.2</b><span id="bmiTxt">Healthy weight</span><div class="bar"><i id="bmiPin"></i></div></div>
+</form>
+</div></section>
+
+<section class="s c" id="reviews"><div class="w">
+<p class="eyebrow rv">Members</p>
+<h2 class="rv">Real results.</h2>
+<div class="stats">
+<div class="stat rv"><b>1,200+</b><span>Active members</span></div>
+<div class="stat rv"><b>4.9★</b><span>Google rating</span></div>
+<div class="stat rv"><b>9 yrs</b><span>In fitness</span></div>
+<div class="stat rv"><b>15k kg</b><span>Fat lost together</span></div>
+</div>
+<div class="reviews">
+<figure class="rev rv"><div class="stars" aria-label="5 stars">★★★★★</div><q>Lost 14 kg in 5 months. The trainers kept me on track with diet and workouts.</q><figcaption class="who"><span class="av" style="background:#d4ff3a">R</span><div><b>Rohit S.</b><small>−14 kg · Fat loss</small></div></figcaption></figure>
+<figure class="rev rv"><div class="stars" aria-label="5 stars">★★★★★</div><q>The ladies batch is the best thing. Safe, clean and the Zumba classes are so much fun.</q><figcaption class="who"><span class="av" style="background:#ff5a1f">P</span><div><b>Priya M.</b><small>Zumba & toning</small></div></figcaption></figure>
+<figure class="rev rv"><div class="stars" aria-label="5 stars">★★★★★</div><q>Great equipment and serious lifters. My deadlift went from 100 to 180 kg here.</q><figcaption class="who"><span class="av" style="background:#5ac8fa">A</span><div><b>Arjun K.</b><small>Powerlifting</small></div></figcaption></figure>
+</div>
+</div></section>
+
+<section class="s" id="join"><div class="w">
+<div class="join c">
+<div class="ph" data-photo="join"></div>
+<p class="eyebrow rv">Free trial</p>
+<h2 class="rv">Your first day<br>is <span class="hl">free.</span></h2>
+<p class="sub rv">Fill this in and we'll confirm your slot on WhatsApp within the hour.</p>
+<form class="book" id="bookForm">
+<div class="two"><input class="field" name="name" placeholder="Your name" required autocomplete="name"><input class="field" name="phone" placeholder="Phone / WhatsApp" required inputmode="tel" autocomplete="tel"></div>
+<div class="two">
+<select class="field" name="goal" aria-label="Goal"><option>Weight loss</option><option>Muscle gain</option><option>General fitness</option><option>Strength / Powerlifting</option><option>Yoga / Flexibility</option><option>Zumba / Dance</option></select>
+<select class="field" name="time" aria-label="Preferred time"><option>Morning (5–10 AM)</option><option>Afternoon (12–4 PM)</option><option>Evening (5–11 PM)</option></select>
+</div>
+<input class="field" type="date" name="date" required aria-label="Trial date">
+<button class="btn" type="submit">Book on WhatsApp →</button>
+</form>
+<p class="note">Or call <a href="tel:+918302615834">+91 83026 15834</a></p>
+</div>
+</div></section>
+
+<section class="s c" style="padding-top:20px"><div class="w">
+<p class="eyebrow rv">FAQ</p>
+<h2 class="rv">Questions?</h2>
+<div class="faq">
+<details class="rv"><summary>I'm a complete beginner. Is that okay?</summary><p>Absolutely. Most of our members started as beginners. You get a free assessment and a trainer shows you every machine on day one.</p></details>
+<details class="rv"><summary>Is there a joining or registration fee?</summary><p>A one-time ₹500 registration fee applies to monthly plans. It's waived on quarterly and yearly plans.</p></details>
+<details class="rv"><summary>Can I freeze my membership?</summary><p>Yes. Yearly members can freeze for up to 30 days, and quarterly members for 10 days, for travel or medical reasons.</p></details>
+<details class="rv"><summary>What should I bring?</summary><p>Clean indoor shoes, a towel and a water bottle. Lockers are free; bring your own lock.</p></details>
+<details class="rv"><summary>Do you offer personal training?</summary><p>Yes. One-on-one personal training is included in Elite and available as an add-on for other plans.</p></details>
+</div>
+</div></section>
+
+<section class="s" id="contact" style="background:#101012"><div class="w">
+<p class="eyebrow rv">Visit us</p>
+<h2 class="rv">Come say hi.</h2>
+<div class="contact">
+<div class="map rv"><iframe title="Gym location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Ranivara,Rajasthan&output=embed"></iframe></div>
+<div class="info rv">
+<div><b>Address</b>Main Road, near Bus Stand, Ranivara, Rajasthan</div>
+<div><b>Phone / WhatsApp</b><a href="tel:+918302615834">+91 83026 15834</a></div>
+<div><b>Hours</b>Mon – Sat: 5:00 AM – 11:00 PM<br>Sunday: 6:00 AM – 12:00 PM</div>
+<div class="btns" style="margin-top:4px"><a class="btn" href="https://wa.me/918302615834" target="_blank" rel="noopener">WhatsApp us</a><a class="btn o" href="https://www.google.com/maps/search/?api=1&query=Ranivara,Rajasthan" target="_blank" rel="noopener">Directions</a></div>
+</div>
+</div>
+</div></section>
+
+<footer class="ft">
+<a class="brand" href="#top"><svg aria-hidden="true"><use href="#mark"/></svg>Iron<em>Pulse</em></a>
+<p>Main Road, Ranivara, Rajasthan · <a href="tel:+918302615834">+91 83026 15834</a></p>
+<p style="margin-top:6px">© <span id="y"></span> Iron Pulse Gym. All rights reserved.</p>
+</footer>
+
+<a class="wa" href="https://wa.me/918302615834?text=Hi%20Iron%20Pulse%20Gym%2C%20I%20want%20to%20know%20about%20membership." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.4-.2Z"/></svg></a>
+
+<script>
+(function(){
+/* ======== EDIT HERE: gym name, phone, photos, plans, trainers, classes ======== */
+var GYM='Iron Pulse Gym', PHONE='918302615834';
+var U=function(id,w){return 'https://images.unsplash.com/'+id+'?auto=format&fit=crop&w='+(w||1000)+'&q=70'};
+var PHOTOS={
+ hero:U('photo-1534438327276-14e5300c3a48',2000),
+ join:U('photo-1540497077202-7c8a3999166f',1600)
+};
+var PROGRAMS=[ // [photo id, title, text, wide?]
+ ['photo-1581009146145-b5ef050c2e1e','Strength Training','Free weights, racks and machines to build real muscle and power.',1],
+ ['photo-1571019613454-1cb2f99b2d8b','Weight Loss','Cardio, HIIT and a diet plan made for steady, lasting fat loss.',1],
+ ['photo-1599058917212-d750089bc07e','CrossFit & HIIT','High-energy group workouts that burn calories fast.',0],
+ ['photo-1544367567-0f2fcb009e0b','Yoga','Flexibility, breathing and calm. Morning and evening batches.',0],
+ ['photo-1518611012118-696072aa579a','Zumba & Dance','Fun dance cardio. No experience needed, just energy.',0]
+];
+// [name, monthly price, features (prefix "-" = not included), highlight?]
+var PLANS=[
+ ['Basic',999,['Full gym floor access','Locker & shower','Free fitness assessment','-Group classes','-Personal trainer'],0],
+ ['Pro',1499,['Everything in Basic','All group classes','Monthly diet chart','Progress check every month','-Personal trainer'],1],
+ ['Elite',2999,['Everything in Pro','Personal trainer (12 sessions/mo)','Custom diet & workout plan','Body-composition analysis','Priority slot booking'],0]
+];
+var DISC={1:0,3:.10,12:.25};
+var TRAINERS=[
+ ['photo-1567013127542-490d757e51fc','Vikram Rathore','Head Coach','Strength & powerlifting · 10 yrs'],
+ ['photo-1594737625785-a6cbdabd333c','Neha Sharma','Yoga & Zumba','Certified yoga instructor · 7 yrs'],
+ ['photo-1571902943202-507ec2618e8f','Aman Choudhary','Fat-loss Coach','HIIT & nutrition · 6 yrs'],
+ ['photo-1550345332-09e3ac987658','Karan Mehta','Personal Trainer','Bodybuilding & rehab · 8 yrs']
+];
+var DAYS=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+var CLASSES={ // [time, class, trainer, tag]
+ Mon:[['6:00 AM','Yoga Flow','Neha',''],['7:30 AM','HIIT Burn','Aman','Hot'],['6:00 PM','Strength Basics','Vikram',''],['7:30 PM','Zumba','Neha','Hot']],
+ Tue:[['6:00 AM','CrossFit','Aman',''],['7:00 AM','Ladies Toning','Neha','Ladies'],['6:30 PM','Power Yoga','Neha',''],['8:00 PM','Core Blast','Karan','']],
+ Wed:[['6:00 AM','Yoga Flow','Neha',''],['7:30 AM','HIIT Burn','Aman','Hot'],['6:00 PM','Deadlift Clinic','Vikram',''],['7:30 PM','Zumba','Neha','Hot']],
+ Thu:[['6:00 AM','CrossFit','Aman',''],['7:00 AM','Ladies Toning','Neha','Ladies'],['6:30 PM','Functional Fit','Karan',''],['8:00 PM','Core Blast','Karan','']],
+ Fri:[['6:00 AM','Yoga Flow','Neha',''],['7:30 AM','HIIT Burn','Aman','Hot'],['6:00 PM','Strength Basics','Vikram',''],['7:30 PM','Zumba Party','Neha','Hot']],
+ Sat:[['7:00 AM','Bootcamp','Aman','Hot'],['9:00 AM','Stretch & Mobility','Neha',''],['6:00 PM','Open Lifting','Vikram','']],
+ Sun:[['7:00 AM','Community Run','Aman','Free'],['9:00 AM','Yoga & Meditation','Neha','']]
+};
+/* ======================================================================== */
+
+var $=function(s){return document.querySelector(s)},$$=function(s){return [].slice.call(document.querySelectorAll(s))};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var img=function(src,alt,eager){return '<img src="'+esc(src)+'" alt="'+esc(alt)+'"'+(eager?' fetchpriority="high"':' loading="lazy"')+' decoding="async" onerror="this.remove()">'};
+var inr=function(n){return '₹'+Math.round(n).toLocaleString('en-IN')};
+var HUES=[[75,120],[20,350],[200,240],[280,320],[160,200]];
+var g=function(i){var h=HUES[i%HUES.length];return '--g1:hsl('+h[0]+',60%,30%);--g2:hsl('+h[1]+',50%,10%)'};
+
+$('[data-photo="hero"]').innerHTML=img(PHOTOS.hero,'Gym floor with weights',true);
+$('[data-photo="join"]').innerHTML=img(PHOTOS.join,'Gym interior');
+var words=['Strength','Cardio','CrossFit','Yoga','Zumba','Personal training','Diet plans','Ladies batch'];
+$('#mq').innerHTML=(words.concat(words)).map(function(w){return '<span>'+w+'</span><span>✦</span>'}).join('');
+
+$('#bento').innerHTML=PROGRAMS.map(function(p,i){return '<div class="ph prog rv'+(p[3]?' wide':'')+'" style="'+g(i)+'">'+img(U(p[0]),p[1])+'<b>0'+(i+1)+'</b><h3>'+esc(p[1])+'</h3><p>'+esc(p[2])+'</p></div>'}).join('');
+
+var period=1;
+function drawPlans(){
+ $$('#toggle button').forEach(function(b){b.classList.toggle('on',+b.getAttribute('data-p')===period)});
+ $('#plans-grid').innerHTML=PLANS.map(function(p){
+  var total=p[1]*period*(1-DISC[period]);
+  var lbl=period===1?'/month':period===3?'/3 months':'/year';
+  var per=period===1?'':inr(total/period)+' per month · save '+inr(p[1]*period-total);
+  return '<div class="plan'+(p[3]?' top':'')+'">'+(p[3]?'<span class="tag">Most popular</span>':'')+'<h3>'+esc(p[0])+'</h3><div class="price">'+inr(total)+'<small> '+lbl+'</small></div><div class="per">'+per+'</div><ul>'+p[2].map(function(f){return f[0]==='-'?'<li class="no">'+esc(f.slice(1))+'</li>':'<li>'+esc(f)+'</li>'}).join('')+'</ul><button class="btn" data-plan="'+esc(p[0])+'" data-price="'+Math.round(total)+'" data-lbl="'+lbl+'">Join '+esc(p[0])+'</button></div>';
+ }).join('');
+}
+$('#toggle').onclick=function(e){var b=e.target.closest('button');if(b){period=+b.getAttribute('data-p');drawPlans()}};
+
+$('#team').innerHTML=TRAINERS.map(function(t,i){return '<div class="tr rv"><div class="ph" style="'+g(i)+'">'+img(U(t[0],700),t[1])+'</div><div class="t"><h3>'+esc(t[1])+'</h3><p>'+esc(t[2])+'</p><small>'+esc(t[3])+'</small></div></div>'}).join('');
+
+var today=DAYS[(new Date().getDay()+6)%7],day=today;
+function drawSched(){
+ $('#days').innerHTML=DAYS.map(function(d){return '<button class="chip'+(d===day?' on':'')+'" data-day="'+d+'">'+d+(d===today?' · Today':'')+'</button>'}).join('');
+ $('#sched').innerHTML=(CLASSES[day]||[]).map(function(c){return '<div class="slot"><time>'+c[0]+'</time><div><b>'+esc(c[1])+'</b><span>with '+esc(c[2])+'</span></div>'+(c[3]?'<em>'+esc(c[3])+'</em>':'<span></span>')+'</div>'}).join('');
+}
+$('#days').onclick=function(e){var b=e.target.closest('[data-day]');if(b){day=b.getAttribute('data-day');drawSched()}};
+
+function bmi(){
+ var h=+$('#h').value/100,w=+$('#kg').value;
+ if(!h||!w||h<1||w<20){$('#bmiVal').textContent='—';$('#bmiTxt').textContent='Enter height and weight';return}
+ var b=w/(h*h),t=b<18.5?'Underweight':b<25?'Healthy weight':b<30?'Overweight':'Obese';
+ $('#bmiVal').textContent=b.toFixed(1);$('#bmiTxt').textContent=t;
+ $('#bmiPin').style.left='calc('+Math.max(0,Math.min(100,(b-15)/(35-15)*100))+'% - 2px)';
+}
+$('#h').oninput=$('#kg').oninput=bmi;
+
+function wa(msg){window.open('https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg),'_blank','noopener')}
+function toast(t){var e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(function(){e.remove()},2600)}
+document.addEventListener('click',function(e){
+ var b=e.target.closest&&e.target.closest('[data-plan]');
+ if(b){wa('Hi '+GYM+', I want to join the '+b.getAttribute('data-plan')+' plan ('+inr(+b.getAttribute('data-price'))+' '+b.getAttribute('data-lbl')+'). Please share the details.');toast('Opening WhatsApp…')}
+});
+$('#bookForm').onsubmit=function(e){
+ e.preventDefault();var f=new FormData(e.target);
+ wa('Hi '+GYM+', I want to book a FREE TRIAL.\nName: '+f.get('name')+'\nPhone: '+f.get('phone')+'\nGoal: '+f.get('goal')+'\nTime: '+f.get('time')+'\nDate: '+f.get('date'));
+ e.target.reset();toast('Opening WhatsApp…');
+};
+var d=$('input[name=date]');d.min=new Date().toISOString().slice(0,10);
+
+$('#y').textContent=new Date().getFullYear();
+drawPlans();drawSched();bmi();
+var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('show');io.unobserve(x.target)}})},{threshold:.08}):null;
+$$('.rv').forEach(function(el){io?io.observe(el):el.classList.add('show')});
+})();
+</script>
+</body>
+</html>
