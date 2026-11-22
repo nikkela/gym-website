@@ -1,8 +1,8 @@
 /* ======== EDIT HERE: gym name, phone, plans, classes — used by the website and the member portal ======== */
 window.GYM = {
   name: 'Iron Pulse Gym',
-  phone: '918302615834',            // WhatsApp / call number with country code, digits only
-  phoneLabel: '+91 83026 15834',    // how the number is shown on the page
+  phone: '919571930793',            // WhatsApp / call number with country code, digits only
+  phoneLabel: '+91 95719 30793',    // how the number is shown on the page
   address: 'Main Road, near Bus Stand, Ranivara, Rajasthan',
   mapQuery: 'Ranivara,Rajasthan',
   hours: [['5:00 AM – 11:00 PM', 'Monday – Saturday'], ['6:00 AM – 12:00 PM', 'Sunday']],

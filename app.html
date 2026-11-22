@@ -281,7 +281,12 @@ function pickRole(r){
  var f=r==='member'?$('#fMember'):r==='owner'?$('#fOwner'):null;
  if(f)setTimeout(function(){var i=f.querySelector('input');if(i&&window.innerWidth>860)i.focus()},50);
 }
-$$('.role').forEach(function(b){b.onclick=function(){pickRole(b.getAttribute('data-role'))}});
+$$('.role').forEach(function(b){b.onclick=function(){
+ var r=b.getAttribute('data-role');pickRole(r);
+ if(S.demo===false)return; // test login is off: use the PIN form
+ $('#fMember').hidden=$('#fOwner').hidden=true;$('#lErr').textContent='';
+ api('POST','/login/demo',{role:r}).then(function(j){saveLogin(j);start()},function(){S.demo=false;pickRole(r)});
+}});
 function submitLogin(form,path){
  form.onsubmit=function(e){
   e.preventDefault();var btn=form.querySelector('button'),f=new FormData(form);btn.disabled=true;$('#lErr').textContent='';

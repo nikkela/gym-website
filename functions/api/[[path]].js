@@ -149,6 +149,20 @@ async function route(req, env, path) {
     return json({ role: 'owner', token: await ownerToken(env) });
   }
 
+  // Test mode: one tap logs in without a PIN. On only while the DEMO_LOGIN setting is "1".
+  if (M === 'POST' && path === '/login/demo') {
+    if (env.DEMO_LOGIN !== '1') fail(403, 'Test login is turned off.');
+    const { role } = await body(req);
+    if (role === 'owner') {
+      if (!env.OWNER_PIN) fail(500, 'Owner PIN is not set yet.');
+      return json({ role: 'owner', token: await ownerToken(env) });
+    }
+    const m = await one(env, "SELECT * FROM members WHERE notes='TEST MEMBER' ORDER BY id LIMIT 1")
+      || await one(env, 'SELECT * FROM members ORDER BY id LIMIT 1');
+    if (!m) fail(404, 'No members yet.');
+    return json({ role: 'member', token: 'm.' + m.token, name: m.name });
+  }
+
   if (M === 'POST' && path === '/login/member') {
     const b = await body(req);
     if (b.key) { // one-tap link
