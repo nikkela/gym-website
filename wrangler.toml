@@ -1,0 +1,13 @@
+name = "iron-pulse-gym"
+compatibility_date = "2025-09-01"
+pages_build_output_dir = "."
+
+# Members, attendance and payments are stored in this D1 database.
+# Create it once:  npx wrangler d1 create gym-db   then paste the id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "gym-db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+# The owner PIN is a secret, set it with:  npx wrangler pages secret put OWNER_PIN

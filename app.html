@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Iron Pulse — Member & Owner Login</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Iron Pulse">
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/logo.svg">
+<style>
+:root{
+ --bg:#f2f2f7;--card:#fff;--card2:#f2f2f7;--fg:#1d1d1f;--mute:#6e6e73;--mute2:#aeaeb2;--sep:rgba(60,60,67,.14);--fill:rgba(118,118,128,.12);
+ --blue:#0071e3;--link:#007aff;--green:#34c759;--orange:#ff9500;--red:#ff3b30;--purple:#af52de;--teal:#30b0c7;
+ --bar:rgba(249,249,249,.8);color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root{
+ --bg:#000;--card:#1c1c1e;--card2:#2c2c2e;--fg:#f5f5f7;--mute:#98989d;--mute2:#636366;--sep:rgba(84,84,88,.5);--fill:rgba(118,118,128,.24);
+ --link:#0a84ff;--green:#30d158;--orange:#ff9f0a;--red:#ff453a;--bar:rgba(22,22,23,.8)}}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);font-size:17px;line-height:1.35;letter-spacing:-.02em;-webkit-font-smoothing:antialiased;min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
+button{cursor:pointer}
+a{color:var(--link);text-decoration:none}
+[hidden]{display:none!important}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px calc(110px + env(safe-area-inset-bottom))}
+.wide .wrap{max-width:1040px}
+/* header */
+.hdr{position:sticky;top:0;z-index:40;background:var(--bar);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--sep)}
+.hdr .in{max-width:1040px;margin:auto;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:10px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--fg)}
+.brand img{width:26px;height:26px}
+.link{background:none;border:0;color:var(--link);font-size:17px;padding:6px 0}
+.large{font-size:34px;font-weight:700;letter-spacing:.01em;line-height:1.15;margin:20px 0 4px}
+.date{color:var(--mute);font-size:15px;font-weight:500;margin-top:18px;text-transform:uppercase;letter-spacing:0}
+.date+.large{margin-top:2px}
+h3.sec{font-size:22px;font-weight:700;margin:30px 0 10px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+h3.sec small{font-size:15px;font-weight:400;color:var(--mute)}
+.cap{font-size:13px;color:var(--mute);text-transform:uppercase;margin:26px 16px 7px;letter-spacing:0}
+.foot{font-size:13px;color:var(--mute);margin:8px 16px 0}
+/* grouped list */
+.group{background:var(--card);border-radius:14px;overflow:hidden}
+.row{display:flex;align-items:center;gap:12px;padding:11px 16px;min-height:48px;position:relative;width:100%;background:none;border:0;text-align:left}
+.row+.row::before{content:"";position:absolute;top:0;left:16px;right:0;border-top:1px solid var(--sep)}
+.row.ic+.row.ic::before{left:62px}
+button.row:active,a.row:active{background:var(--fill)}
+.row .grow{flex:1;min-width:0}
+.row .t{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .s{display:block;font-size:14px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .r{color:var(--mute);font-size:15px;text-align:right;flex:none;font-variant-numeric:tabular-nums}
+.row.chev::after{content:"";width:8px;height:8px;border:solid var(--mute2);border-width:2px 2px 0 0;transform:rotate(45deg);flex:none;margin-left:2px}
+.av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:15px;color:#fff;flex:none}
+.empty{padding:22px 16px;color:var(--mute);text-align:center;font-size:15px}
+/* pills */
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:3px 9px;border-radius:980px;white-space:nowrap}
+.p-active{background:rgba(52,199,89,.15);color:var(--green)}
+.p-expiring{background:rgba(255,149,0,.15);color:var(--orange)}
+.p-expired{background:rgba(255,59,48,.14);color:var(--red)}
+.p-in{background:rgba(0,122,255,.14);color:var(--link)}
+/* buttons */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:14px;padding:15px;font-size:17px;font-weight:600;background:var(--blue);color:#fff;transition:transform .15s,opacity .2s}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.5}
+.btn.green{background:var(--green)}.btn.red{background:var(--red)}
+.btn.gray{background:var(--fill);color:var(--link)}
+.btn.tint{background:rgba(0,122,255,.12);color:var(--link)}
+.btn.sm{width:auto;padding:8px 14px;font-size:15px;border-radius:980px}
+.btn.danger{background:var(--card);color:var(--red);font-weight:400}
+.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+.act{background:var(--card);border:0;border-radius:14px;padding:12px 4px 10px;display:grid;justify-items:center;gap:6px;font-size:12px;color:var(--link)}
+.act svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.act:disabled{color:var(--mute2)}
+/* fields */
+.field{width:100%;border:0;background:transparent;font-size:17px;padding:0;min-width:0;text-align:right;-webkit-appearance:none;appearance:none;outline:none}
+.row label{flex:none;min-width:90px}
+.row textarea.field{text-align:left;resize:vertical;min-height:60px}
+.inp{width:100%;border:0;border-radius:12px;background:var(--card);padding:15px 16px;font-size:17px;outline:none}
+.inp:focus{box-shadow:0 0 0 3px rgba(0,122,255,.35)}
+.search{width:100%;border:0;border-radius:10px;background:var(--fill);padding:9px 12px 9px 34px;font-size:17px;outline:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 20 20'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:10px center;background-size:17px}
+.segm{display:flex;background:var(--fill);border-radius:9px;padding:2px;gap:2px;overflow-x:auto;scrollbar-width:none}
+.segm button{flex:1;border:0;background:none;border-radius:7px;padding:6px 10px;font-size:13px;font-weight:500;white-space:nowrap}
+.segm button.on{background:var(--card);box-shadow:0 3px 8px rgba(0,0,0,.12),0 3px 1px rgba(0,0,0,.04)}
+@media(prefers-color-scheme:dark){.segm button.on{background:#636366}}
+/* login */
+.login{min-height:100vh;display:grid;place-items:center;padding:40px 16px}
+.login .box{width:100%;max-width:440px;text-align:center}
+.login .logo{width:84px;height:84px;margin:0 auto 18px;border-radius:20px;box-shadow:0 10px 30px rgba(0,113,227,.3)}
+.login h1{font-size:34px;font-weight:700}
+.login p.lead{color:var(--mute);margin:6px 0 30px}
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.role{background:var(--card);border:2px solid transparent;border-radius:20px;padding:22px 14px;display:grid;justify-items:center;gap:10px;text-align:center;transition:border-color .2s,transform .15s}
+.role:active{transform:scale(.97)}
+.role.on{border-color:var(--blue)}
+.role i{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-style:normal}
+.role i svg{width:28px;height:28px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.role b{font-size:17px}
+.role span{font-size:13px;color:var(--mute)}
+.lform{display:grid;gap:10px;margin-top:20px;text-align:left}
+.hint{font-size:13px;color:var(--mute);text-align:center;margin-top:6px}
+.err{color:var(--red);font-size:15px;text-align:center;min-height:20px}
+/* member */
+.checkin{margin-top:18px;border-radius:22px;padding:22px;background:var(--card);display:grid;gap:14px;text-align:center}
+.checkin .clock{font-size:52px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em;line-height:1.05}
+.checkin .lbl{color:var(--mute);font-size:15px}
+.bigbtn{width:100%;border:0;border-radius:18px;padding:20px;font-size:21px;font-weight:600;color:#fff;background:var(--green);box-shadow:0 8px 24px rgba(52,199,89,.35);transition:transform .15s}
+.bigbtn:active{transform:scale(.97)}
+.bigbtn.out{background:var(--red);box-shadow:0 8px 24px rgba(255,59,48,.3)}
+.bigbtn:disabled{background:var(--mute2);box-shadow:none}
+.pass{margin-top:14px;border-radius:22px;padding:22px;color:#fff;background:linear-gradient(135deg,#0071e3,#7a3cff);display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;box-shadow:0 12px 30px rgba(0,113,227,.25)}
+.pass.expiring{background:linear-gradient(135deg,#ff9500,#ff5e3a);box-shadow:0 12px 30px rgba(255,149,0,.25)}
+.pass.expired{background:linear-gradient(135deg,#636366,#3a3a3c);box-shadow:none}
+.pass small{opacity:.85;font-size:14px;display:block}
+.pass b{font-size:28px;font-weight:700;display:block;margin:4px 0}
+.pass .meta{grid-column:1/-1;display:flex;justify-content:space-between;gap:10px;font-size:14px;border-top:1px solid rgba(255,255,255,.25);padding-top:12px;flex-wrap:wrap}
+.pass .meta span{opacity:.85}
+.ring{width:84px;height:84px;position:relative}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:22px;margin:0}
+.pass .btn{grid-column:1/-1;background:rgba(255,255,255,.22);backdrop-filter:blur(10px)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.wide .tiles{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.tl{background:var(--card);border-radius:16px;padding:14px 16px;text-align:left;border:0;display:block;width:100%}
+.tl small{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--mute);font-weight:500}
+.tl small i{width:8px;height:8px;border-radius:50%}
+.tl b{display:block;font-size:30px;font-weight:700;letter-spacing:0;margin-top:2px;font-variant-numeric:tabular-nums}
+.tl span{font-size:13px;color:var(--mute)}
+button.tl:active{background:var(--fill)}
+.week{display:flex;justify-content:space-between;background:var(--card);border-radius:16px;padding:16px 18px}
+.week div{display:grid;justify-items:center;gap:6px;font-size:13px;color:var(--mute)}
+.week i{width:30px;height:30px;border-radius:50%;background:var(--fill);display:grid;place-items:center;font-style:normal;color:#fff;font-size:14px}
+.week i.y{background:var(--green)}
+.week .today{color:var(--fg);font-weight:600}
+/* owner */
+.tabs{display:flex}
+.tabs button{border:0;background:none;display:grid;justify-items:center;gap:2px;font-size:10px;font-weight:500;color:var(--mute2);padding:6px 0;flex:1;position:relative}
+.tabs button svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tabs button.on{color:var(--link)}
+.tabs .badge{position:absolute;top:2px;left:calc(50% + 6px);background:var(--red);color:#fff;font-size:11px;font-weight:600;min-width:18px;height:18px;border-radius:9px;padding:0 5px;display:grid;place-items:center}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--bar);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-top:1px solid var(--sep);padding-bottom:env(safe-area-inset-bottom)}
+.tabbar .tabs{max-width:560px;margin:auto}
+@media(min-width:861px){
+ .tabbar{position:sticky;top:48px;bottom:auto;border-top:0;border-bottom:1px solid var(--sep)}
+ .tabbar .tabs{max-width:640px}
+ .tabs button{display:flex;justify-content:center;align-items:center;gap:6px;font-size:14px;padding:10px 0}
+ .tabs button svg{width:20px;height:20px}
+ .tabs .badge{position:static}
+ .wrap{padding-bottom:60px}
+}
+.cols{display:grid;gap:0 24px}
+@media(min-width:861px){.cols{grid-template-columns:1fr 1fr}}
+.chart{background:var(--card);border-radius:16px;padding:18px 16px 12px}
+.bars{display:flex;align-items:flex-end;gap:4px;height:140px}
+.bars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:4px;min-width:0}
+.bars i{width:100%;max-width:26px;border-radius:5px 5px 2px 2px;background:var(--link);min-height:2px;transition:height .6s}
+.bars i.hi{background:var(--orange)}
+.bars span{font-size:10px;color:var(--mute);white-space:nowrap}
+.bars em{font-style:normal;font-size:10px;color:var(--mute)}
+.qa{display:flex;gap:8px;margin-top:14px}
+.qa .search{flex:1}
+.filters{margin:12px 0 10px}
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:60;opacity:0;transition:opacity .3s}
+.scrim.open{opacity:1}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:61;max-height:94vh;background:var(--bg);border-radius:14px 14px 0 0;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .38s cubic-bezier(.2,.8,.2,1);max-width:720px;margin:auto}
+.sheet.open{transform:none}
+@media(min-width:861px){.sheet{bottom:auto;top:50%;border-radius:16px;max-height:88vh;transform:translateY(-40%) scale(.96);opacity:0;transition:transform .3s,opacity .3s;max-width:620px}.sheet.open{transform:translateY(-50%);opacity:1}}
+.sheet .sh{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 8px;gap:10px}
+.sheet .sh b{font-size:17px;font-weight:600;flex:1;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sheet .sh .link{min-width:64px}
+.sheet .sh .link:last-child{text-align:right;font-weight:600}
+.sheet .sb{overflow-y:auto;padding:0 16px calc(30px + env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch}
+.who{text-align:center;padding:8px 0 4px}
+.who .av{width:76px;height:76px;font-size:30px;margin:0 auto 10px}
+.who h2{font-size:26px;font-weight:700}
+.who p{color:var(--mute);font-size:15px;margin-top:2px}
+.banner{background:rgba(52,199,89,.14);color:var(--green);border-radius:14px;padding:12px 16px;font-size:15px;margin-top:14px;font-weight:500}
+.pin{font-variant-numeric:tabular-nums;letter-spacing:.25em;font-weight:600;color:var(--fg)}
+.toast{position:fixed;left:50%;top:calc(60px + env(safe-area-inset-top));transform:translateX(-50%);background:rgba(29,29,31,.92);color:#fff;padding:11px 20px;border-radius:980px;font-size:15px;font-weight:500;z-index:99;backdrop-filter:blur(10px);animation:tin .3s;max-width:calc(100vw - 32px);text-align:center}
+@keyframes tin{from{opacity:0;transform:translate(-50%,-10px)}}
+.spin{width:28px;height:28px;border:3px solid var(--fill);border-top-color:var(--mute);border-radius:50%;animation:sp .8s linear infinite;margin:60px auto}
+@keyframes sp{to{transform:rotate(360deg)}}
+</style>
+<script src="/data.js"></script>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<section id="vLogin" class="login" hidden>
+<div class="box">
+<img class="logo" src="/logo.svg" alt="">
+<h1>Iron Pulse</h1>
+<p class="lead">Who's logging in?</p>
+<div class="roles">
+<button class="role" data-role="member"><i style="background:linear-gradient(135deg,#34c759,#30b0c7)"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></i><b>Member</b><span>Check in, plan & attendance</span></button>
+<button class="role" data-role="owner"><i style="background:linear-gradient(135deg,#0071e3,#7a3cff)"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M16 7l3 3M18.5 4.5l2 2"/></svg></i><b>Owner</b><span>Members, renewals & reports</span></button>
+</div>
+<form class="lform" id="fMember" hidden>
+<input class="inp" name="phone" placeholder="Phone number" inputmode="tel" autocomplete="tel" required>
+<input class="inp" name="pin" placeholder="4-digit PIN" inputmode="numeric" maxlength="4" autocomplete="one-time-code" required>
+<button class="btn">Log in</button>
+<p class="hint">Got a login link on WhatsApp? Just tap it — you're in with one click.<br>No PIN? Ask at the front desk.</p>
+</form>
+<form class="lform" id="fOwner" hidden>
+<input class="inp" name="pin" type="password" placeholder="Owner PIN" inputmode="numeric" autocomplete="current-password" required>
+<button class="btn">Log in</button>
+<p class="hint">You stay logged in on this device.</p>
+</form>
+<p class="err" id="lErr"></p>
+<p class="hint"><a href="/">← Back to website</a></p>
+</div>
+</section>
+
+<!-- ============ APP SHELL ============ -->
+<div id="vApp" hidden>
+<header class="hdr"><div class="in"><a class="brand" href="/"><img src="/logo.svg" alt="">Iron Pulse</a><span id="hdrR"></span></div></header>
+<nav class="tabbar" id="tabbar" hidden><div class="tabs" id="tabs"></div></nav>
+<main class="wrap" id="main"><div class="spin"></div></main>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true"><div class="sh"><button class="link" id="shL">Close</button><b id="shT"></b><button class="link" id="shR"></button></div><div class="sb" id="shB"></div></div>
+
+<script>
+(function(){
+var G=window.GYM;
+var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var inr=function(n){return '₹'+Math.round(n||0).toLocaleString('en-IN')};
+var store={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}}};
+var S={token:store.get('ip_token'),role:store.get('ip_role'),tab:'today',filter:'all',q:''};
+var COLORS=['#ff9500','#34c759','#007aff','#af52de','#ff2d55','#5ac8fa','#ff3b30','#30b0c7','#5856d6'];
+var avc=function(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))>>>0;return COLORS[h%COLORS.length]};
+var av=function(n){return '<span class="av" style="background:'+avc(n||'?')+'">'+esc((n||'?').trim().charAt(0).toUpperCase())+'</span>'};
+var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var WD=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var fd=function(d){if(!d)return '—';var p=d.slice(0,10).split('-');return +p[2]+' '+MON[+p[1]-1]+(p[0]!=String(new Date().getFullYear())?' '+p[0]:'')};
+var ft=function(iso){return iso?new Date(iso).toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:'Asia/Kolkata'}).toUpperCase():'—'};
+var fdi=function(iso){return iso?fd(new Date(Date.parse(iso)+330*60000).toISOString()):'—'};
+var dur=function(m){if(m==null)return '—';var h=Math.floor(m/60);return (h?h+' h ':'')+(m%60)+' min'};
+var ago=function(iso){var m=Math.round((Date.now()-Date.parse(iso))/60000);return m<1?'just now':m<60?m+' min':Math.floor(m/60)+' h '+(m%60)+' min'};
+var hr=function(h){return h==null?'—':((h%12)||12)+(h<12?' AM':' PM')};
+var leftTxt=function(m){return m.days_left<0?'Expired '+(-m.days_left)+(m.days_left===-1?' day':' days')+' ago':m.days_left===0?'Expires today':m.days_left+(m.days_left===1?' day':' days')+' left'};
+var pill=function(m){return '<span class="pill p-'+m.status+'">'+(m.status==='active'?'Active':m.status==='expiring'?(m.days_left===0?'Today':m.days_left+'d left'):'Expired')+'</span>'};
+var toast=function(t){var e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(function(){e.remove()},2600)};
+var waTo=function(phone,msg){window.open('https://wa.me/'+(String(phone).length===10?'91'+phone:phone)+'?text='+encodeURIComponent(msg),'_blank','noopener')};
+var planPrice=function(name,months){var p=G.plans.filter(function(x){return x[0]===name})[0];if(!p)return 0;return Math.round(p[1]*months*(1-(G.discount[months]||0)))};
+var istToday=function(){return new Date(Date.now()+330*60000).toISOString().slice(0,10)};
+var ICON={
+ today:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>',
+ members:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg>',
+ renewals:'<svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>',
+ insights:'<svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>',
+ call:'<svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>',
+ chat:'<svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg>',
+ in:'<svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>',
+ out:'<svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>',
+ key:'<svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 1 1 3-3l8 8v3h-3v-2h-2v-2h-2z"/></svg>'
+};
+
+/* ---------- API ---------- */
+function api(method,path,data){
+ return fetch('/api'+path,{method:method,headers:{'content-type':'application/json',authorization:S.token?'Bearer '+S.token:''},body:data?JSON.stringify(data):undefined})
+ .then(function(r){return r.json().catch(function(){return {error:r.status===404||r.status===405?'The member portal server is not set up yet.':'Server not reachable.'}}).then(function(j){
+   if(r.status===401&&path.indexOf('/login')!==0){logout();throw new Error(j.error||'Please log in again.')}
+   if(!r.ok)throw new Error(j.error||'Something went wrong.');return j})},
+ function(){throw new Error('No internet connection.')});
+}
+function saveLogin(j){S.token=j.token;S.role=j.role;store.set('ip_token',j.token);store.set('ip_role',j.role);store.set('ip_last_role',j.role)}
+function logout(){S.token=S.role=null;store.set('ip_token',null);store.set('ip_role',null);clearInterval(S.poll);closeSheet();showLogin()}
+
+/* ---------- LOGIN ---------- */
+function showLogin(){
+ $('#vApp').hidden=true;$('#vLogin').hidden=false;
+ pickRole(store.get('ip_last_role')||'');
+}
+function pickRole(r){
+ $$('.role').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-role')===r)});
+ $('#fMember').hidden=r!=='member';$('#fOwner').hidden=r!=='owner';$('#lErr').textContent='';
+ var f=r==='member'?$('#fMember'):r==='owner'?$('#fOwner'):null;
+ if(f)setTimeout(function(){var i=f.querySelector('input');if(i&&window.innerWidth>860)i.focus()},50);
+}
+$$('.role').forEach(function(b){b.onclick=function(){pickRole(b.getAttribute('data-role'))}});
+function submitLogin(form,path){
+ form.onsubmit=function(e){
+  e.preventDefault();var btn=form.querySelector('button'),f=new FormData(form);btn.disabled=true;$('#lErr').textContent='';
+  api('POST',path,{phone:f.get('phone'),pin:f.get('pin')}).then(function(j){saveLogin(j);form.reset();start()},function(err){$('#lErr').textContent=err.message}).then(function(){btn.disabled=false});
+ };
+}
+submitLogin($('#fMember'),'/login/member');
+submitLogin($('#fOwner'),'/login/owner');
+
+function start(){
+ var k=(location.hash.match(/[#&]k=([A-Za-z0-9]+)/)||[])[1];
+ if(k){
+  history.replaceState(null,'',location.pathname);
+  $('#vLogin').hidden=true;$('#vApp').hidden=false;$('#main').innerHTML='<div class="spin"></div>';
+  return api('POST','/login/member',{key:k}).then(function(j){saveLogin(j);toast('Welcome, '+j.name.split(' ')[0]+'!');start()},function(err){showLogin();$('#lErr').textContent=err.message;pickRole('member')});
+ }
+ if(!S.token)return showLogin();
+ $('#vLogin').hidden=true;$('#vApp').hidden=false;
+ $('#hdrR').innerHTML='<button class="link" id="lo">Log out</button>';
+ $('#lo').onclick=function(){if(confirm('Log out of Iron Pulse on this device?'))logout()};
+ clearInterval(S.poll);
+ if(S.role==='owner'){document.body.classList.add('wide');ownerInit()}
+ else{document.body.classList.remove('wide');$('#tabbar').hidden=true;memberLoad();S.poll=setInterval(memberLoad,120000)}
+}
+
+/* live timers */
+setInterval(function(){$$('[data-since]').forEach(function(e){
+ var s=Math.max(0,Math.floor((Date.now()-Date.parse(e.getAttribute('data-since')))/1000));
+ e.textContent=e.hasAttribute('data-hms')?Math.floor(s/3600)+':'+('0'+Math.floor(s%3600/60)).slice(-2)+':'+('0'+s%60).slice(-2):ago(e.getAttribute('data-since'));
+})},1000);
+
+/* ---------- MEMBER ---------- */
+function memberLoad(){return api('GET','/me').then(renderMember,function(e){if(S.role==='member')$('#main').innerHTML='<p class="empty">'+esc(e.message)+'</p>'})}
+function ring(m){
+ var total=Math.max(1,Math.round((Date.parse(m.end_date)-Date.parse(m.start_date))/86400000)+1);
+ var pct=Math.max(0,Math.min(1,(m.days_left+1)/total)),c=2*Math.PI*36;
+ return '<div class="ring"><svg viewBox="0 0 84 84"><circle cx="42" cy="42" r="36" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="8"/><circle cx="42" cy="42" r="36" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+(c*(1-pct))+'"/></svg><b>'+Math.max(0,m.days_left)+'</b></div>';
+}
+function renderMember(d){
+ var m=d.member,st=d.stats,inside=d.inside;
+ var wd=WD[new Date(d.today+'T12:00:00').getDay()];
+ var todayKey=G.days[(new Date(d.today+'T12:00:00').getDay()+6)%7];
+ var classes=G.classes[todayKey]||[];
+ var h='<p class="date">'+wd+', '+fd(d.today)+'</p><h1 class="large">Hi, '+esc(m.name.split(' ')[0])+'</h1>';
+ h+='<div class="checkin">';
+ if(inside){
+  h+='<span class="lbl">You checked in at '+ft(inside.check_in)+'</span><div class="clock" data-since="'+inside.check_in+'" data-hms>0:00:00</div><button class="bigbtn out" id="ckBtn">Check out</button>';
+ }else if(m.status==='expired'){
+  h+='<span class="lbl">Your membership has expired. Renew to check in.</span><button class="bigbtn" disabled>Check in</button>';
+ }else{
+  var last=d.attendance[0];
+  h+='<span class="lbl">'+(last&&last.check_in.slice(0,10)&&fdi(last.check_in)===fd(d.today)?'Welcome back! Done for today: '+dur(last.minutes):'Ready to train?')+'</span><button class="bigbtn" id="ckBtn">Check in</button>';
+ }
+ h+='</div>';
+ h+='<div class="pass '+m.status+'"><div><small>'+esc(m.plan)+' membership</small><b>'+leftTxt(m)+'</b><small>Valid till '+fd(m.end_date)+'</small></div>'+ring(m)+
+   '<div class="meta"><span>Member since '+fd(m.start_date)+'</span><span>'+esc(m.batch)+'</span></div>'+
+   (m.status!=='active'?'<button class="btn" id="renewBtn">Renew on WhatsApp</button>':'')+'</div>';
+ h+='<div class="tiles">'+
+  tile('This month',st.visits_this_month,st.visits_this_month===1?'visit':'visits','#34c759')+
+  tile('Streak',st.streak+(st.streak>=3?' 🔥':''),st.streak===1?'day':'days','#ff9500')+
+  tile('Avg workout',st.avg_minutes!=null?st.avg_minutes:'—','minutes','#007aff')+
+  tile('Usual time',hr(st.usual_hour),'check-in','#af52de')+'</div>';
+ h+='<h3 class="sec">This week <small>'+st.visits_this_week+' of 7 days</small></h3><div class="week">'+st.week.map(function(w,i){return '<div class="'+(w.date===d.today?'today':'')+'"><i class="'+(w.visited?'y':'')+'">'+(w.visited?'✓':'')+'</i>'+'MTWTFSS'[i]+'</div>'}).join('')+'</div>';
+ h+='<h3 class="sec">Today\'s classes <small>'+(m.plan==='Basic'?'Pro & Elite':'Included')+'</small></h3><div class="group">'+(classes.length?classes.map(function(c){return '<div class="row"><span class="r" style="width:70px;text-align:left">'+c[0]+'</span><div class="grow"><span class="t">'+esc(c[1])+'</span><span class="s">with '+esc(c[2])+'</span></div>'+(c[3]?'<span class="pill p-expiring">'+esc(c[3])+'</span>':'')+'</div>'}).join(''):'<p class="empty">No classes today</p>')+'</div>';
+ h+='<h3 class="sec">Attendance <small>'+st.visits_total+' days in last 4 months</small></h3><div class="group">'+(d.attendance.length?d.attendance.slice(0,30).map(attRow).join(''):'<p class="empty">No visits yet. Tap Check in when you arrive.</p>')+'</div>';
+ h+='<h3 class="sec">Payments</h3><div class="group">'+(d.payments.length?d.payments.map(payRow).join(''):'<p class="empty">No payments recorded</p>')+'</div>';
+ h+='<p class="cap">Account</p><div class="group"><div class="row"><span class="grow">Phone</span><span class="r">'+esc(m.phone)+'</span></div><div class="row"><span class="grow">Batch</span><span class="r">'+esc(m.batch)+'</span></div><a class="row chev" href="https://wa.me/'+G.phone+'" target="_blank" rel="noopener"><span class="grow">Message the gym</span></a><a class="row chev" href="tel:+'+G.phone+'"><span class="grow">Call '+esc(G.phoneLabel)+'</span></a></div>';
+ $('#main').innerHTML=h;
+ var b=$('#ckBtn');if(b)b.onclick=function(){b.disabled=true;api('POST',inside?'/me/checkout':'/me/checkin').then(function(x){renderMember(x);toast(inside?'Checked out. Great workout! 💪':'Checked in. Have a great workout!')},function(e){toast(e.message);b.disabled=false})};
+ var r=$('#renewBtn');if(r)r.onclick=function(){waTo(G.phone,'Hi '+G.name+', I am '+m.name+' ('+m.phone+'). I want to renew my '+m.plan+' membership (valid till '+fd(m.end_date)+').')};
+}
+function tile(l,v,u,c,attr){return '<'+(attr?'button '+attr:'div')+' class="tl"><small><i style="background:'+c+'"></i>'+l+'</small><b>'+v+'</b><span>'+u+'</span></'+(attr?'button':'div')+'>'}
+function attRow(a){return '<div class="row"><div class="grow"><span class="t">'+fdi(a.check_in)+'</span><span class="s">'+ft(a.check_in)+' – '+(a.check_out?ft(a.check_out):'now')+'</span></div><span class="r">'+(a.check_out?dur(a.minutes):'<span class="pill p-in">In gym</span>')+'</span></div>'}
+function payRow(p){return '<div class="row"><div class="grow"><span class="t">'+esc(p.plan)+' · '+p.months+(p.months>1?' months':' month')+'</span><span class="s">'+fd(p.paid_on)+(p.note?' · '+esc(p.note):'')+(p.name?' · '+esc(p.name):'')+'</span></div><span class="r" style="color:var(--fg);font-weight:600">'+inr(p.amount)+'</span></div>'}
+
+/* ---------- OWNER ---------- */
+var TABS=[['today','Today'],['members','Members'],['renewals','Renewals'],['insights','Insights']];
+function ownerInit(){
+ $('#tabbar').hidden=false;
+ $('#tabs').innerHTML=TABS.map(function(t){return '<button data-tab="'+t[0]+'">'+ICON[t[0]]+'<span>'+t[1]+'</span></button>'}).join('');
+ $('#tabs').onclick=function(e){var b=e.target.closest('[data-tab]');if(b){S.tab=b.getAttribute('data-tab');renderOwner();scrollTo(0,0)}};
+ ownerLoad();S.poll=setInterval(function(){if(!document.hidden&&$('#sheet').hidden)ownerLoad()},60000);
+}
+function ownerLoad(){return api('GET','/owner/overview').then(function(d){S.ov=d;renderOwner()},function(e){if(S.role==='owner')$('#main').innerHTML='<p class="empty">'+esc(e.message)+'</p>'})}
+document.addEventListener('visibilitychange',function(){if(!document.hidden&&S.role==='owner'&&$('#sheet').hidden)ownerLoad()});
+function renderOwner(){
+ var d=S.ov;if(!d)return;
+ $$('#tabs button').forEach(function(b){var t=b.getAttribute('data-tab');b.classList.toggle('on',t===S.tab);
+  var n=t==='renewals'?d.counts.expiring:0,old=b.querySelector('.badge');if(old)old.remove();if(n)b.insertAdjacentHTML('beforeend','<span class="badge">'+n+'</span>')});
+ ({today:oToday,members:oMembers,renewals:oRenewals,insights:oInsights})[S.tab](d);
+}
+function mRow(m,right,sub){return '<button class="row ic chev" data-mid="'+m.id+'">'+av(m.name)+'<div class="grow"><span class="t">'+esc(m.name)+'</span><span class="s">'+(sub!=null?sub:esc(m.plan)+' · till '+fd(m.end_date))+'</span></div>'+(right!=null?right:pill(m))+'</button>'}
+function oToday(d){
+ var c=d.counts;
+ var h='<p class="date">'+WD[new Date(d.today+'T12:00:00').getDay()]+', '+fd(d.today)+'</p><h1 class="large">Today</h1>';
+ h+='<div class="qa"><input class="search" id="qci" placeholder="Quick check-in: name or phone" autocomplete="off"><button class="btn sm" id="addM">+ Add</button></div><div class="group" id="qres" style="margin-top:8px" hidden></div>';
+ h+='<div class="tiles">'+
+  tile('In gym now',c.inside,'members','#007aff','data-go="inside"')+
+  tile('Visits today',c.today_visits,'members','#34c759','data-go="todaylog"')+
+  tile('Expiring 7 days',c.expiring,'need renewal','#ff9500','data-tab-go="renewals"')+
+  tile('Expired',c.expired,'members','#ff3b30','data-tab-go="renewals"')+
+  tile('Active',c.active,'of '+c.members+' members','#af52de','data-tab-go="members" data-f="active"')+
+  tile('Revenue',inr(c.revenue_month),c.payments_month+' payments this month','#30b0c7','data-tab-go="insights"')+'</div>';
+ h+='<div class="cols"><div><h3 class="sec" id="inside">In the gym now <small>'+d.inside.length+'</small></h3><div class="group">'+(d.inside.length?d.inside.map(function(a){return '<div class="row ic">'+av(a.name)+'<button class="grow" style="background:none;border:0;text-align:left;padding:0" data-mid="'+a.member_id+'"><span class="t">'+esc(a.name)+'</span><span class="s">In at '+ft(a.check_in)+' · <span data-since="'+a.check_in+'">'+ago(a.check_in)+'</span></span></button><button class="btn sm tint" data-out="'+a.member_id+'">Check out</button></div>'}).join(''):'<p class="empty">Nobody is checked in right now</p>')+'</div></div>';
+ h+='<div><h3 class="sec" id="todaylog">Today\'s attendance <small>'+d.today_log.length+' check-ins</small></h3><div class="group">'+(d.today_log.length?d.today_log.map(function(a){return '<button class="row ic" data-mid="'+a.member_id+'">'+av(a.name)+'<div class="grow"><span class="t">'+esc(a.name)+'</span><span class="s">'+ft(a.check_in)+' – '+(a.check_out?ft(a.check_out):'now')+'</span></div><span class="r">'+(a.check_out?dur(a.minutes):'<span class="pill p-in">In gym</span>')+'</span></button>'}).join(''):'<p class="empty">No check-ins yet today</p>')+'</div></div></div>';
+ if(d.expiring.length)h+='<h3 class="sec">Expiring this week <small>'+d.expiring.length+'</small></h3><div class="group">'+d.expiring.slice(0,5).map(function(m){return mRow(m)}).join('')+'</div>';
+ $('#main').innerHTML=h;
+ var q=$('#qci');q.oninput=function(){
+  var v=q.value.trim().toLowerCase(),r=$('#qres');
+  if(!v){r.hidden=true;return}
+  var insideIds={};d.inside.forEach(function(a){insideIds[a.member_id]=1});
+  var list=d.members.filter(function(m){return m.name.toLowerCase().indexOf(v)>=0||m.phone.indexOf(v)>=0}).slice(0,6);
+  r.hidden=false;r.innerHTML=list.length?list.map(function(m){return '<div class="row ic">'+av(m.name)+'<button class="grow" style="background:none;border:0;text-align:left;padding:0" data-mid="'+m.id+'"><span class="t">'+esc(m.name)+'</span><span class="s">'+esc(m.phone)+' · '+leftTxt(m)+'</span></button>'+(insideIds[m.id]?'<button class="btn sm tint" data-out="'+m.id+'">Check out</button>':'<button class="btn sm '+(m.status==='expired'?'gray':'')+'" data-in="'+m.id+'">Check in</button>')+'</div>'}).join(''):'<p class="empty">No member found</p>';
+ };
+ $('#addM').onclick=addMemberSheet;
+}
+function oMembers(d){
+ var F=[['all','All',d.members.length],['active','Active',d.members.filter(function(m){return m.status==='active'}).length],['expiring','Expiring',d.counts.expiring],['expired','Expired',d.counts.expired]];
+ var h='<h1 class="large" style="display:flex;justify-content:space-between;align-items:center">Members <button class="btn sm" id="addM">+ Add member</button></h1>';
+ h+='<input class="search" id="mq" placeholder="Search name or phone" value="'+esc(S.q)+'" autocomplete="off" style="margin-top:8px">';
+ h+='<div class="segm filters" id="mf">'+F.map(function(f){return '<button data-f="'+f[0]+'" class="'+(S.filter===f[0]?'on':'')+'">'+f[1]+' '+f[2]+'</button>'}).join('')+'</div>';
+ h+='<div class="group" id="mlist"></div><p class="foot"><button class="link" id="csv" style="font-size:15px">Export members as CSV</button></p>';
+ $('#main').innerHTML=h;
+ var draw=function(){
+  var v=S.q.trim().toLowerCase();
+  var list=d.members.filter(function(m){return (S.filter==='all'||m.status===S.filter)&&(!v||m.name.toLowerCase().indexOf(v)>=0||m.phone.indexOf(v)>=0)});
+  $('#mlist').innerHTML=list.length?list.map(function(m){return mRow(m,null,esc(m.plan)+' · '+leftTxt(m)+' · '+(m.last_visit?'last visit '+(m.days_since_visit===0?'today':m.days_since_visit+'d ago'):'never visited')+' · '+m.visits_this_month+' this month')}).join(''):'<p class="empty">'+(d.members.length?'No members match':'No members yet. Tap “Add member” to add your first one.')+'</p>';
+ };
+ draw();
+ $('#mq').oninput=function(e){S.q=e.target.value;draw()};
+ $('#mf').onclick=function(e){var b=e.target.closest('[data-f]');if(b){S.filter=b.getAttribute('data-f');$$('#mf button').forEach(function(x){x.classList.toggle('on',x===b)});draw()}};
+ $('#addM').onclick=addMemberSheet;
+ $('#csv').onclick=function(){
+  var rows=[['Name','Phone','Plan','Batch','Start','Valid till','Days left','Status','Last visit','Visits this month']].concat(d.members.map(function(m){return [m.name,m.phone,m.plan,m.batch,m.start_date,m.end_date,m.days_left,m.status,m.last_visit?fdi(m.last_visit):'',m.visits_this_month]}));
+  var csv=rows.map(function(r){return r.map(function(x){x=String(x);return /[",\n]/.test(x)?'"'+x.replace(/"/g,'""')+'"':x}).join(',')}).join('\n');
+  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+csv],{type:'text/csv'}));a.download='iron-pulse-members-'+d.today+'.csv';a.click();
+ };
+}
+function remindMsg(m){
+ return m.status==='expired'
+  ?'Hi '+m.name.split(' ')[0]+', your '+m.plan+' membership at '+G.name+' expired on '+fd(m.end_date)+'. We miss you at the gym! Renew today and get back on track 💪 Reply here to renew.'
+  :'Hi '+m.name.split(' ')[0]+', a reminder from '+G.name+': your '+m.plan+' membership '+(m.days_left===0?'expires today':'expires on '+fd(m.end_date)+' ('+m.days_left+(m.days_left===1?' day':' days')+' left)')+'. Renew now to keep training without a break. Reply here to renew.';
+}
+function oRenewals(d){
+ var h='<h1 class="large">Renewals</h1>';
+ h+='<h3 class="sec">Expiring this week <small>'+d.expiring.length+'</small></h3><div class="group">'+(d.expiring.length?d.expiring.map(function(m){return remRow(m,remindMsg(m))}).join(''):'<p class="empty">No memberships expire in the next 7 days 🎉</p>')+'</div><p class="foot">Tap Remind to send a WhatsApp message. Tap a name to renew.</p>';
+ h+='<h3 class="sec">Expired <small>last 60 days · '+d.expired.length+'</small></h3><div class="group">'+(d.expired.length?d.expired.map(function(m){return remRow(m,remindMsg(m))}).join(''):'<p class="empty">No recently expired members</p>')+'</div>';
+ h+='<h3 class="sec">Not seen in 7+ days <small>active plans · '+d.inactive.length+'</small></h3><div class="group">'+(d.inactive.length?d.inactive.map(function(m){return remRow(m,'Hi '+m.name.split(' ')[0]+', we haven\'t seen you at '+G.name+(m.days_since_visit!=null?' for '+m.days_since_visit+' days':' yet')+'. Everything okay? Your plan is valid till '+fd(m.end_date)+' — come train today 💪',m.days_since_visit!=null?'Last visit '+m.days_since_visit+' days ago':'Never visited')}).join(''):'<p class="empty">Everyone has been coming in regularly</p>')+'</div>';
+ $('#main').innerHTML=h;
+}
+function remRow(m,msg,sub){return '<div class="row ic">'+av(m.name)+'<button class="grow" style="background:none;border:0;text-align:left;padding:0" data-mid="'+m.id+'"><span class="t">'+esc(m.name)+'</span><span class="s">'+(sub||esc(m.plan)+' · '+leftTxt(m)+' · '+fd(m.end_date))+'</span></button><button class="btn sm tint" data-wa="'+esc(m.phone)+'" data-msg="'+esc(msg)+'">Remind</button></div>'}
+function oInsights(d){
+ var c=d.counts,maxD=Math.max.apply(null,d.daily.map(function(x){return x.visits}).concat([1]));
+ var hrs=d.hours.slice(5,24),maxH=Math.max.apply(null,hrs.concat([1])),peak=hrs.indexOf(Math.max.apply(null,hrs))+5;
+ var h='<h1 class="large">Insights</h1><div class="tiles">'+
+  tile('Revenue this month',inr(c.revenue_month),c.payments_month+' payments','#30b0c7')+
+  tile('New members',c.new_this_month,'this month','#34c759')+
+  tile('Active members',c.active,'of '+c.members,'#af52de')+
+  tile('Busiest hour',maxH>0&&hrs[peak-5]?hr(peak):'—','last 30 days','#ff9500')+'</div>';
+ h+='<div class="cols"><div><h3 class="sec">Daily visits <small>last 14 days</small></h3><div class="chart"><div class="bars">'+d.daily.map(function(x){var dt=new Date(x.date+'T12:00:00');return '<div title="'+fd(x.date)+': '+x.visits+'"><em>'+(x.visits||'')+'</em><i style="height:'+(x.visits/maxD*100)+'%"></i><span>'+'SMTWTFS'[dt.getDay()]+'</span></div>'}).join('')+'</div></div></div>';
+ h+='<div><h3 class="sec">Busy hours <small>check-ins, last 30 days</small></h3><div class="chart"><div class="bars">'+hrs.map(function(v,i){var H=i+5;return '<div title="'+hr(H)+': '+v+'"><i class="'+(v===maxH&&v>0?'hi':'')+'" style="height:'+(v/maxH*100)+'%"></i><span>'+(H%3===0?((H%12)||12)+(H<12?'a':'p'):'&nbsp;')+'</span></div>'}).join('')+'</div></div></div></div>';
+ var plans={};d.members.filter(function(m){return m.status!=='expired'}).forEach(function(m){plans[m.plan]=(plans[m.plan]||0)+1});
+ h+='<div class="cols"><div><h3 class="sec">Active members by plan</h3><div class="group">'+(Object.keys(plans).length?Object.keys(plans).map(function(p){return '<div class="row"><span class="grow">'+esc(p)+'</span><span class="r">'+plans[p]+'</span></div>'}).join(''):'<p class="empty">No active members</p>')+'</div></div>';
+ h+='<div><h3 class="sec">Recent payments</h3><div class="group">'+(d.payments.length?d.payments.map(payRow).join(''):'<p class="empty">No payments yet</p>')+'</div></div></div>';
+ $('#main').innerHTML=h;
+}
+
+/* owner clicks (delegated) */
+document.addEventListener('click',function(e){
+ if(S.role!=='owner')return;
+ var t=e.target.closest('[data-mid],[data-in],[data-out],[data-wa],[data-tab-go],[data-go]');if(!t)return;
+ if(t.hasAttribute('data-in')||t.hasAttribute('data-out')){
+  var id=t.getAttribute('data-in')||t.getAttribute('data-out'),isIn=t.hasAttribute('data-in');t.disabled=true;
+  api('POST','/owner/members/'+id+(isIn?'/checkin':'/checkout')).then(function(x){toast(x.member.name.split(' ')[0]+(isIn?' checked in':' checked out')+(isIn&&x.member.status==='expired'?' · plan expired!':''));var q=$('#qci');if(q)q.value='';return ownerLoad()},function(er){toast(er.message);t.disabled=false});
+ }else if(t.hasAttribute('data-wa')){waTo(t.getAttribute('data-wa'),t.getAttribute('data-msg'))}
+ else if(t.hasAttribute('data-tab-go')){S.tab=t.getAttribute('data-tab-go');if(t.getAttribute('data-f'))S.filter=t.getAttribute('data-f');renderOwner();scrollTo(0,0)}
+ else if(t.hasAttribute('data-go')){var el=document.getElementById(t.getAttribute('data-go'));if(el)el.scrollIntoView({behavior:'smooth',block:'center'})}
+ else if(t.hasAttribute('data-mid')&&!t.closest('.sheet'))memberSheet(+t.getAttribute('data-mid'));
+});
+
+/* ---------- SHEETS ---------- */
+function openSheet(title,html,right,onRight){
+ $('#shT').textContent=title;$('#shB').innerHTML=html;$('#shB').scrollTop=0;
+ var r=$('#shR');r.textContent=right||'';r.onclick=onRight||null;r.style.visibility=right?'visible':'hidden';
+ var sc=$('#scrim'),sh=$('#sheet');sc.hidden=sh.hidden=false;document.body.style.overflow='hidden';
+ requestAnimationFrame(function(){requestAnimationFrame(function(){sc.classList.add('open');sh.classList.add('open')})});
+}
+function closeSheet(reload){
+ var sc=$('#scrim'),sh=$('#sheet');if(sh.hidden)return;
+ sc.classList.remove('open');sh.classList.remove('open');document.body.style.overflow='';
+ setTimeout(function(){sc.hidden=sh.hidden=true},350);
+ if(reload&&S.role==='owner')ownerLoad();
+}
+$('#scrim').onclick=function(){closeSheet(true)};$('#shL').onclick=function(){closeSheet(true)};
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSheet(true)});
+
+function opts(list,sel){return list.map(function(o){var v=Array.isArray(o)?o[0]:o,l=Array.isArray(o)?o[1]:o;return '<option value="'+esc(v)+'"'+(String(v)===String(sel)?' selected':'')+'>'+esc(l)+'</option>'}).join('')}
+var MONTHS=[[1,'1 month'],[3,'3 months'],[6,'6 months'],[12,'12 months']];
+var batchOpts=function(sel){var l=G.batches.slice();if(sel&&l.indexOf(sel)<0)l.unshift(sel);return opts(l,sel)};
+
+function addMemberSheet(){
+ var p=G.plans.filter(function(x){return x[3]})[0]||G.plans[0];
+ var h='<form id="fAdd"><p class="cap">Member</p><div class="group">'+
+  '<div class="row"><label>Name</label><input class="field" name="name" required autocomplete="off" placeholder="Full name"></div>'+
+  '<div class="row"><label>Phone</label><input class="field" name="phone" required inputmode="tel" placeholder="10-digit mobile"></div>'+
+  '<div class="row"><label>Batch</label><select class="field" name="batch">'+batchOpts(G.batches[2])+'</select></div></div>'+
+  '<p class="cap">Membership</p><div class="group">'+
+  '<div class="row"><label>Plan</label><select class="field" name="plan">'+opts(G.plans.map(function(x){return [x[0],x[0]+' · '+inr(x[1])+'/mo']}),p[0])+'</select></div>'+
+  '<div class="row"><label>Duration</label><select class="field" name="months">'+opts(MONTHS,1)+'</select></div>'+
+  '<div class="row"><label>Start date</label><input class="field" type="date" name="start_date" value="'+istToday()+'"></div>'+
+  '<div class="row"><label>Amount paid</label><input class="field" name="amount" inputmode="numeric" value="'+planPrice(p[0],1)+'"></div></div>'+
+  '<p class="foot" id="addEnd"></p>'+
+  '<p class="cap">Notes</p><div class="group"><div class="row"><textarea class="field" name="notes" placeholder="Health issues, goals, anything to remember"></textarea></div></div>'+
+  '<div style="margin-top:22px"><button class="btn">Add member</button></div><p class="err" id="addErr" style="margin-top:10px"></p></form>';
+ openSheet('New member',h,'Add',function(){$('#fAdd').requestSubmit()});
+ var f=$('#fAdd'),upd=function(){f.amount.value=planPrice(f.plan.value,+f.months.value);endHint()},endHint=function(){
+  var s=f.start_date.value;if(!s)return;var t=new Date(s+'T00:00:00Z');t.setUTCMonth(t.getUTCMonth()+(+f.months.value));t.setUTCDate(t.getUTCDate()-1);
+  $('#addEnd').textContent='Valid till '+fd(t.toISOString().slice(0,10))+'. A login PIN and one-tap link are created automatically.'};
+ f.plan.onchange=f.months.onchange=upd;f.start_date.onchange=endHint;endHint();
+ f.onsubmit=function(e){e.preventDefault();var b=f.querySelector('.btn');b.disabled=true;$('#addErr').textContent='';
+  var x=Object.fromEntries(new FormData(f));
+  api('POST','/owner/members',x).then(function(v){toast('Member added');memberSheet(v.member.id,v,true)},function(er){$('#addErr').textContent=er.message;b.disabled=false})};
+}
+
+function loginLink(m){return location.origin+'/app#k='+m.login_key}
+function memberSheet(id,pre,isNew){
+ if(!pre)openSheet('','<div class="spin"></div>');
+ (pre?Promise.resolve(pre):api('GET','/owner/members/'+id)).then(function(d){drawMemberSheet(d,isNew)},function(e){$('#shB').innerHTML='<p class="empty">'+esc(e.message)+'</p>'});
+}
+function drawMemberSheet(d,isNew){
+ var m=d.member,st=d.stats,inside=d.inside,link=loginLink(m);
+ var welcome='Hi '+m.name.split(' ')[0]+', welcome to '+G.name+'! 💪\n\nTap this link to open your member app — it logs you in with one click:\n'+link+'\n\nCheck in when you arrive, see your attendance and plan validity.\nOr log in with phone '+m.phone+' and PIN '+m.pin+'.';
+ var h='<div class="who">'+av(m.name)+'<h2>'+esc(m.name)+'</h2><p>'+esc(m.phone)+' · '+esc(m.batch)+'</p><p style="margin-top:8px">'+pill(m)+(inside?' <span class="pill p-in">In gym · <span data-since="'+inside.check_in+'">'+ago(inside.check_in)+'</span></span>':'')+'</p></div>';
+ if(isNew)h+='<div class="banner">Member added. Send the login link so they can log in with one tap.</div>';
+ h+='<div class="acts">'+
+  '<a class="act" href="tel:+91'+esc(m.phone)+'">'+ICON.call+'Call</a>'+
+  '<button class="act" id="aWa">'+ICON.chat+'WhatsApp</button>'+
+  '<button class="act" id="aCk">'+(inside?ICON.out+'Check out':ICON.in+'Check in')+'</button>'+
+  '<button class="act" id="aLink">'+ICON.key+'Send login</button></div>';
+ h+='<p class="cap">Membership</p><div class="group">'+
+  '<div class="row"><span class="grow">Plan</span><span class="r">'+esc(m.plan)+'</span></div>'+
+  '<div class="row"><span class="grow">Started</span><span class="r">'+fd(m.start_date)+'</span></div>'+
+  '<div class="row"><span class="grow">Valid till</span><span class="r">'+fd(m.end_date)+'</span></div>'+
+  '<div class="row"><span class="grow">Status</span><span class="r" style="color:var('+(m.status==='active'?'--green':m.status==='expiring'?'--orange':'--red')+')">'+leftTxt(m)+'</span></div></div>';
+ h+='<p class="cap">Renew</p><form id="fRen" class="group">'+
+  '<div class="row"><label>Plan</label><select class="field" name="plan">'+opts(G.plans.map(function(x){return x[0]}).concat(G.plans.some(function(x){return x[0]===m.plan})?[]:[m.plan]),m.plan)+'</select></div>'+
+  '<div class="row"><label>Duration</label><select class="field" name="months">'+opts(MONTHS,1)+'</select></div>'+
+  '<div class="row"><label>Amount paid</label><input class="field" name="amount" inputmode="numeric" value="'+planPrice(m.plan,1)+'"></div>'+
+  '<div class="row"><button class="btn" style="padding:11px">Renew membership</button></div></form><p class="foot" id="renHint"></p>';
+ h+='<p class="cap">Attendance</p><div class="tiles" style="margin-top:0">'+tile('This month',st.visits_this_month,'visits','#34c759')+tile('Streak',st.streak,'days','#ff9500')+tile('Avg workout',st.avg_minutes!=null?st.avg_minutes:'—','minutes','#007aff')+tile('Usual time',hr(st.usual_hour),'check-in','#af52de')+'</div>';
+ h+='<div class="group" style="margin-top:12px">'+(d.attendance.length?d.attendance.slice(0,20).map(attRow).join(''):'<p class="empty">No visits yet</p>')+'</div>';
+ h+='<p class="cap">Payments</p><div class="group">'+(d.payments.length?d.payments.map(payRow).join(''):'<p class="empty">No payments recorded</p>')+'</div>';
+ h+='<p class="cap">Login</p><div class="group">'+
+  '<div class="row"><span class="grow">PIN</span><span class="r pin">'+esc(m.pin)+'</span></div>'+
+  '<button class="row" id="aCopy"><span class="grow" style="color:var(--link)">Copy one-tap login link</span></button>'+
+  '<button class="row" id="aReset"><span class="grow" style="color:var(--red)">Reset PIN & link</span></button></div><p class="foot">Resetting logs the member out of all their devices.</p>';
+ h+='<p class="cap">Details</p><form id="fEd" class="group">'+
+  '<div class="row"><label>Name</label><input class="field" name="name" value="'+esc(m.name)+'" required></div>'+
+  '<div class="row"><label>Phone</label><input class="field" name="phone" value="'+esc(m.phone)+'" inputmode="tel" required></div>'+
+  '<div class="row"><label>Batch</label><select class="field" name="batch">'+batchOpts(m.batch)+'</select></div>'+
+  '<div class="row"><label>Valid till</label><input class="field" type="date" name="end_date" value="'+m.end_date+'"></div>'+
+  '<div class="row"><textarea class="field" name="notes" placeholder="Notes">'+esc(m.notes)+'</textarea></div>'+
+  '<div class="row"><button class="btn gray" style="padding:11px">Save changes</button></div></form>';
+ h+='<div style="margin-top:28px"><button class="btn danger" id="aDel">Delete member</button></div>';
+ openSheet(m.name,h,'Done',function(){closeSheet(true)});
+
+ var refresh=function(v){drawMemberSheet(v)};
+ $('#aWa').onclick=function(){waTo(m.phone,m.status==='active'?'Hi '+m.name.split(' ')[0]+', ':remindMsg(m))};
+ $('#aLink').onclick=function(){waTo(m.phone,welcome)};
+ $('#aCopy').onclick=function(){(navigator.clipboard?navigator.clipboard.writeText(link):Promise.reject()).then(function(){toast('Login link copied')},function(){prompt('Copy this login link:',link)})};
+ $('#aCk').onclick=function(){var b=this;b.disabled=true;api('POST','/owner/members/'+m.id+(inside?'/checkout':'/checkin')).then(function(v){toast(inside?'Checked out':'Checked in');refresh(v)},function(e){toast(e.message);b.disabled=false})};
+ $('#aReset').onclick=function(){if(!confirm('Create a new PIN and login link for '+m.name+'? Their old link will stop working.'))return;api('POST','/owner/members/'+m.id+'/reset-login').then(function(v){toast('New PIN: '+v.member.pin);refresh(v)},function(e){toast(e.message)})};
+ $('#aDel').onclick=function(){if(!confirm('Delete '+m.name+' and all their attendance and payments? This cannot be undone.'))return;api('DELETE','/owner/members/'+m.id).then(function(){toast('Member deleted');closeSheet(true)},function(e){toast(e.message)})};
+ var fr=$('#fRen'),rh=function(){
+  var t=istToday(),from=m.end_date>=t?m.end_date:null,s=from?new Date(from+'T00:00:00Z'):new Date(t+'T00:00:00Z');if(from)s.setUTCDate(s.getUTCDate()+1);
+  var e=new Date(s);e.setUTCMonth(e.getUTCMonth()+(+fr.months.value));e.setUTCDate(e.getUTCDate()-1);
+  $('#renHint').textContent='New validity: '+fd(s.toISOString().slice(0,10))+' → '+fd(e.toISOString().slice(0,10))};
+ fr.plan.onchange=fr.months.onchange=function(){fr.amount.value=planPrice(fr.plan.value,+fr.months.value);rh()};rh();
+ fr.onsubmit=function(e){e.preventDefault();var b=fr.querySelector('.btn');b.disabled=true;
+  api('POST','/owner/members/'+m.id+'/renew',Object.fromEntries(new FormData(fr))).then(function(v){toast('Renewed till '+fd(v.member.end_date));refresh(v)},function(er){toast(er.message);b.disabled=false})};
+ var fe=$('#fEd');fe.onsubmit=function(e){e.preventDefault();
+  api('PATCH','/owner/members/'+m.id,Object.fromEntries(new FormData(fe))).then(function(v){toast('Saved');refresh(v)},function(er){toast(er.message)})};
+}
+
+window.addEventListener('hashchange',function(){if(/[#&]k=/.test(location.hash))start()});
+start();
+})();
+</script>
+</body>
+</html>

@@ -5,274 +5,304 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Iron Pulse Gym — Strength, Cardio & Personal Training</title>
 <meta name="description" content="Iron Pulse Gym: strength training, cardio, CrossFit, yoga, Zumba and personal training. Modern equipment, certified trainers, affordable memberships. Book a free trial.">
-<meta name="theme-color" content="#0b0b0c">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/logo.svg" type="image/svg+xml">
-<meta property="og:title" content="Iron Pulse Gym — Train hard. Live strong.">
+<link rel="apple-touch-icon" href="/logo.svg">
+<meta property="og:title" content="Iron Pulse Gym — Stronger, every day.">
 <meta property="og:description" content="Modern gym with certified trainers. Book your free trial on WhatsApp.">
 <meta name="twitter:card" content="summary_large_image">
 <style>
-:root{--bg:#0b0b0c;--fg:#f5f5f7;--mute:#a1a1a6;--card:#161618;--card2:#1f1f22;--line:#2c2c30;--acc:#d4ff3a;--acc2:#ff5a1f;--ink:#0b0b0c}
+:root{
+ --bg:#fff;--bg2:#f5f5f7;--card:#fff;--fg:#1d1d1f;--mute:#6e6e73;--line:#d2d2d7;--sep:rgba(0,0,0,.08);
+ --blue:#0071e3;--link:#0066cc;--green:#34c759;--orange:#ff9500;--red:#ff3b30;
+ --nav:rgba(255,255,255,.72);--shadow:0 4px 24px rgba(0,0,0,.06);
+ color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root{
+ --bg:#000;--bg2:#101010;--card:#1c1c1e;--fg:#f5f5f7;--mute:#a1a1a6;--line:#424245;--sep:rgba(255,255,255,.1);
+ --link:#2997ff;--nav:rgba(22,22,23,.72);--shadow:none}}
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-button,input,select,textarea{font:inherit;color:inherit}
-a{color:var(--acc)}
+html{scroll-behavior:smooth;scroll-padding-top:52px}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.47;font-size:17px;letter-spacing:-.022em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
 img{display:block;max-width:100%}
-.w{max-width:1120px;margin:auto}
+.w{max-width:1024px;margin:auto}
 /* nav */
-nav.top{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:0 max(16px,calc(50% - 560px));height:60px;background:rgba(11,11,12,.8);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--line);font-size:14px}
-.brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-.02em;color:var(--fg);text-decoration:none;text-transform:uppercase}
-.brand svg{width:32px;height:32px}
-.brand em{font-style:normal;color:var(--acc)}
-nav.top .links{display:flex;gap:26px;align-items:center}
-nav.top .links a{color:var(--fg);text-decoration:none;opacity:.75}
-nav.top .links a:hover{opacity:1}
-nav.top .links .pill{background:var(--acc);color:var(--ink);opacity:1;padding:8px 18px;border-radius:980px;font-weight:700}
-@media(max-width:760px){nav.top .links a:not(.pill){display:none}}
+nav.top{position:sticky;top:0;z-index:50;height:48px;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--sep)}
+nav.top .w{height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:12px}
+.brand{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:600;color:var(--fg);letter-spacing:-.02em}
+.brand:hover{text-decoration:none}
+.brand img{width:26px;height:26px}
+nav.top .links{display:flex;gap:28px;align-items:center}
+nav.top .links a{color:var(--fg);opacity:.8}
+nav.top .links a:hover{opacity:1;text-decoration:none}
+nav.top .links .pill{background:var(--blue);color:#fff;opacity:1;padding:4px 12px;border-radius:980px;font-weight:500}
+@media(max-width:760px){nav.top .links a.hide{display:none}nav.top .links{gap:16px}}
 /* type */
-section.s{padding:100px 16px}
+section.s{padding:110px 16px}
+section.alt{background:var(--bg2)}
 .c{text-align:center}
-h1{font-size:clamp(46px,9vw,112px);font-weight:900;letter-spacing:-.045em;line-height:.95;text-transform:uppercase}
-h2{font-size:clamp(34px,5.6vw,64px);font-weight:900;letter-spacing:-.04em;line-height:1;text-transform:uppercase}
-.eyebrow{font-size:13px;font-weight:700;color:var(--acc);margin-bottom:14px;letter-spacing:.14em;text-transform:uppercase}
-.sub{font-size:clamp(17px,2vw,21px);color:var(--mute);margin-top:16px;max-width:60ch}
-.c .sub{margin-left:auto;margin-right:auto}
-.hl{color:var(--acc)}
-.out{-webkit-text-stroke:2px var(--fg);color:transparent}
-.btns{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap}
+h1{font-size:clamp(48px,8vw,96px);font-weight:600;letter-spacing:-.015em;line-height:1.05}
+h2{font-size:clamp(34px,5vw,56px);font-weight:600;letter-spacing:-.005em;line-height:1.07}
+h3{font-weight:600;letter-spacing:-.01em}
+.eyebrow{font-size:clamp(17px,1.8vw,21px);font-weight:600;color:var(--orange);margin-bottom:8px}
+.sub{font-size:clamp(19px,2.2vw,28px);font-weight:400;color:var(--mute);margin-top:10px;line-height:1.2;letter-spacing:.004em}
+.c .sub{max-width:34ch;margin-left:auto;margin-right:auto}
+.grad{background:linear-gradient(90deg,#2997ff,#a259ff 55%,#ff5e8a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btns{margin-top:28px;display:flex;gap:26px;flex-wrap:wrap;align-items:center}
 .c .btns{justify-content:center}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 28px;border-radius:980px;background:var(--acc);color:var(--ink);text-decoration:none;font-size:16px;font-weight:800;border:0;cursor:pointer;text-transform:uppercase;letter-spacing:.02em;transition:transform .2s}
-.btn:hover{transform:translateY(-2px)}
-.btn.o{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(10px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 22px;border-radius:980px;background:var(--blue);color:#fff;font-size:17px;font-weight:400;border:0;cursor:pointer;transition:background .2s}
+.btn:hover{background:#0077ed;text-decoration:none}
+.btn.sec{background:transparent;color:var(--link);border:1px solid var(--link)}
+.btn.sec:hover{background:var(--link);color:#fff}
+.more{font-size:17px}
+.more::after{content:" ›"}
 /* photo frame — gradient shows if the image can't load */
-.ph{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--g1,#2a2a2e),var(--g2,#0b0b0c))}
+.ph{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--g1,#d9e6f7),var(--g2,#f5f5f7))}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 /* hero */
-.hero{position:relative;min-height:min(94vh,920px);display:flex;align-items:center;padding:80px 16px;--g1:#20240e;--g2:#0b0b0c}
-.hero>.ph{position:absolute;inset:0}
-.hero>.ph img{animation:kb 20s ease-out both;filter:grayscale(.35) contrast(1.1)}
-@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,12,.95) 0,rgba(11,11,12,.7) 45%,rgba(11,11,12,.2) 100%),linear-gradient(0deg,var(--bg) 0,transparent 30%)}
-.hero .w{position:relative;z-index:1;width:100%}
-.hero .badges{display:flex;gap:28px;margin-top:54px;flex-wrap:wrap}
-.hero .badges div b{display:block;font-size:34px;font-weight:900;letter-spacing:-.03em;color:var(--acc)}
-.hero .badges div span{font-size:13px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
-/* marquee */
-.mqw{overflow:hidden;padding:12px 0}
-.mq{background:var(--acc);color:var(--ink);overflow:hidden;white-space:nowrap;padding:14px 0;font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:.02em;transform:rotate(-1.5deg);margin:0 -20px}
-.mq div{display:inline-block;animation:mq 30s linear infinite}
-.mq span{margin:0 22px}
-@keyframes mq{to{transform:translateX(-50%)}}
+.hero{padding:72px 16px 0;text-align:center}
+.hero .sub{max-width:28ch;margin-left:auto;margin-right:auto}
+.hero .shot{margin:56px auto 0;max-width:1180px;aspect-ratio:16/8;border-radius:28px;--g1:#1d1d1f;--g2:#3a3a3c}
+@media(max-width:700px){.hero .shot{aspect-ratio:4/5;border-radius:22px}}
+.hero .shot img{animation:zoom 1.6s cubic-bezier(.2,.7,.2,1) both}
+@keyframes zoom{from{transform:scale(1.08);opacity:0}to{transform:scale(1);opacity:1}}
+.facts{display:flex;justify-content:center;gap:clamp(28px,7vw,90px);margin-top:48px;flex-wrap:wrap}
+.facts b{display:block;font-size:clamp(32px,4.4vw,48px);font-weight:600;letter-spacing:-.01em;line-height:1.1}
+.facts span{color:var(--mute);font-size:14px}
 /* programs */
-.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:52px}
-.prog{border-radius:24px;min-height:340px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;grid-column:span 2}
-.prog.wide{grid-column:span 3;min-height:400px}
-.prog::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.88) 0,rgba(0,0,0,.3) 60%,rgba(0,0,0,.05) 100%)}
-.prog>*:not(img){position:relative;z-index:1}
-.prog b{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}
-.prog h3{font-size:clamp(24px,2.8vw,32px);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin:6px 0 8px;text-transform:uppercase}
-.prog p{color:rgba(255,255,255,.78);font-size:16px;max-width:36ch}
-.prog img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.prog:hover img{transform:scale(1.06)}
-@media(max-width:900px){.prog,.prog.wide{grid-column:span 3;min-height:320px}}
-@media(max-width:600px){.prog,.prog.wide{grid-column:span 6;min-height:290px}}
-/* why */
-.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:52px}
-.f{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px}
-.f i{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:rgba(212,255,58,.12);color:var(--acc);font-style:normal;font-size:24px;margin-bottom:16px}
-.f h3{font-size:19px;margin-bottom:6px;letter-spacing:-.01em}
-.f p{color:var(--mute);font-size:15px}
+.tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;margin-top:56px}
+.tile{border-radius:28px;min-height:420px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;grid-column:span 2}
+.tile.wide{grid-column:span 3;min-height:480px}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72) 0,rgba(0,0,0,.1) 55%,transparent 100%)}
+.tile>*:not(img){position:relative;z-index:1}
+.tile small{font-size:14px;font-weight:600;opacity:.85}
+.tile h3{font-size:clamp(26px,3vw,34px);line-height:1.1;margin:4px 0 8px}
+.tile p{color:rgba(255,255,255,.86);font-size:17px;max-width:34ch}
+.tile img{transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.tile:hover img{transform:scale(1.04)}
+@media(max-width:900px){.tile,.tile.wide{grid-column:span 3;min-height:360px}}
+@media(max-width:600px){.tile,.tile.wide{grid-column:span 6;min-height:340px}}
+/* features */
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;text-align:left}
+@media(max-width:860px){.feats{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.feats{grid-template-columns:1fr}}
+.feat{background:var(--card);border-radius:28px;padding:34px 30px;box-shadow:var(--shadow)}
+.feat svg{width:40px;height:40px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-bottom:18px}
+.feat h3{font-size:21px;margin-bottom:6px}
+.feat p{color:var(--mute);font-size:17px}
 /* plans */
-.toggle{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:980px;padding:4px;margin-top:34px}
-.toggle button{border:0;background:none;padding:9px 20px;border-radius:980px;cursor:pointer;font-weight:700;font-size:14px;color:var(--mute)}
-.toggle button.on{background:var(--fg);color:var(--ink)}
-.toggle small{color:var(--acc2);font-weight:800;margin-left:4px}
-.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:36px;text-align:left}
-.plan{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:32px;display:flex;flex-direction:column}
-.plan.top{background:linear-gradient(160deg,#25290f,var(--card) 55%);border-color:var(--acc)}
-.plan .tag{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--acc);color:var(--ink);padding:5px 10px;border-radius:6px;margin-bottom:12px}
-.plan h3{font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:-.01em}
-.plan .price{font-size:48px;font-weight:900;letter-spacing:-.04em;margin:10px 0 2px}
-.plan .price small{font-size:16px;color:var(--mute);font-weight:600}
-.plan .per{color:var(--mute);font-size:14px;min-height:21px}
-.plan ul{list-style:none;padding:0;margin:20px 0 26px;font-size:15px;color:#d1d1d6}
-.plan li{padding:9px 0;border-top:1px solid var(--line)}
-.plan li::before{content:"✓";color:var(--acc);font-weight:900;margin-right:10px}
-.plan li.no{color:#5c5c62}.plan li.no::before{content:"–";color:#5c5c62}
-.plan .btn{margin-top:auto;justify-content:center}
-.plan:not(.top) .btn{background:var(--card2);color:var(--fg);border:1px solid var(--line)}
-.note{font-size:14px;color:var(--mute);margin-top:22px}
+.seg{display:inline-flex;background:var(--bg2);border-radius:10px;padding:2px;margin-top:34px}
+.alt .seg{background:rgba(118,118,128,.12)}
+.seg button{border:0;background:none;padding:7px 18px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;color:var(--fg)}
+.seg button.on{background:var(--card);box-shadow:0 3px 8px rgba(0,0,0,.12),0 3px 1px rgba(0,0,0,.04)}
+.seg small{color:var(--green);font-weight:600;margin-left:4px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;text-align:left}
+@media(max-width:860px){.plans{grid-template-columns:1fr;max-width:460px;margin-left:auto;margin-right:auto}}
+.plan{background:var(--card);border-radius:28px;padding:36px 32px;display:flex;flex-direction:column;box-shadow:var(--shadow);border:2px solid transparent}
+.plan.top{border-color:var(--blue)}
+.plan .tag{font-size:12px;font-weight:600;color:var(--orange);min-height:18px}
+.plan h3{font-size:28px}
+.plan .price{font-size:40px;font-weight:600;letter-spacing:-.01em;margin:14px 0 0}
+.plan .price small{font-size:17px;color:var(--mute);font-weight:400}
+.plan .per{color:var(--green);font-size:14px;min-height:21px;font-weight:500}
+.plan ul{list-style:none;padding:0;margin:22px 0 28px;font-size:15px}
+.plan li{padding:10px 0;border-top:1px solid var(--sep);display:flex;gap:10px}
+.plan li::before{content:"";flex:none;width:18px;height:18px;margin-top:1px;border-radius:50%;background:var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.3l2.6 2.6L13 6.5' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.plan li.no{color:var(--mute)}.plan li.no::before{background:var(--line) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M6 9h6' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")}
+.plan .btn{margin-top:auto}
+.plan:not(.top) .btn{background:transparent;color:var(--link);border:1px solid var(--link)}
+.plan:not(.top) .btn:hover{background:var(--link);color:#fff}
+.note{font-size:14px;color:var(--mute);margin-top:24px}
 /* trainers */
-.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:52px}
-.tr{border-radius:24px;overflow:hidden;background:var(--card);border:1px solid var(--line)}
-.tr .ph{aspect-ratio:4/5}
-.tr .ph img{filter:grayscale(1);transition:filter .5s}
-.tr:hover .ph img{filter:none}
-.tr div.t{padding:20px 22px}
-.tr h3{font-size:20px;font-weight:800}
-.tr p{color:var(--acc);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
-.tr small{display:block;color:var(--mute);font-size:14px;margin-top:8px}
-/* schedule */
-.days{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:34px}
-.chip{border:1px solid var(--line);background:var(--card);padding:9px 18px;border-radius:980px;cursor:pointer;font-size:14px;font-weight:700}
-.chip.on{background:var(--acc);color:var(--ink);border-color:var(--acc)}
-.sched{max-width:760px;margin:26px auto 0;display:grid;gap:10px;text-align:left}
-.slot{display:grid;grid-template-columns:120px 1fr auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 20px}
-.slot time{font-weight:800;font-variant-numeric:tabular-nums}
-.slot b{display:block}
-.slot span{color:var(--mute);font-size:14px}
-.slot em{font-style:normal;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:5px 10px;border-radius:8px;background:rgba(255,90,31,.14);color:var(--acc2)}
-@media(max-width:560px){.slot{grid-template-columns:1fr auto}.slot time{grid-column:1/-1}}
-.hours{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;max-width:760px;margin:30px auto 0}
-.hours div{background:var(--card2);border-radius:18px;padding:18px;text-align:center}
-.hours b{display:block;font-size:20px}.hours span{color:var(--mute);font-size:14px}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px}
+@media(max-width:860px){.team{grid-template-columns:1fr 1fr}}
+.tr{text-align:center}
+.tr .ph{aspect-ratio:1;border-radius:50%;max-width:200px;margin:0 auto 18px}
+.tr h3{font-size:21px}
+.tr p{color:var(--orange);font-size:14px;font-weight:600}
+.tr small{display:block;color:var(--mute);font-size:14px;margin-top:4px}
+/* grouped list (iOS style) */
+.group{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);text-align:left}
+.row{display:flex;align-items:center;gap:16px;padding:14px 20px;position:relative}
+.row+.row::before{content:"";position:absolute;top:0;left:20px;right:0;border-top:1px solid var(--sep)}
+.days{display:flex;gap:2px;justify-content:center;margin-top:34px;background:rgba(118,118,128,.12);border-radius:10px;padding:2px;width:max-content;max-width:100%;margin-left:auto;margin-right:auto;overflow-x:auto}
+.days button{border:0;background:none;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;white-space:nowrap}
+.days button.on{background:var(--card);box-shadow:0 3px 8px rgba(0,0,0,.12)}
+.sched{max-width:640px;margin:26px auto 0}
+.sched time{font-variant-numeric:tabular-nums;color:var(--mute);width:78px;flex:none;font-size:15px}
+.sched b{font-weight:500;display:block}
+.sched span{color:var(--mute);font-size:14px}
+.sched em{margin-left:auto;font-style:normal;font-size:12px;font-weight:600;padding:3px 9px;border-radius:980px;background:rgba(255,149,0,.14);color:var(--orange)}
+.hours{display:flex;gap:40px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+.hours b{display:block;font-size:21px;font-weight:600}.hours span{color:var(--mute);font-size:14px}
+/* portal promo */
+.promo{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+@media(max-width:860px){.promo{grid-template-columns:1fr;text-align:center}.promo .btns{justify-content:center}}
+.promo ul{list-style:none;padding:0;margin-top:24px;display:grid;gap:12px;font-size:17px}
+@media(max-width:860px){.promo ul{justify-items:center}}
+.promo li{display:flex;gap:10px;align-items:center}
+.promo li i{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-style:normal;color:#fff;font-size:14px;flex:none}
+.phone{width:min(300px,80vw);margin:auto;border-radius:44px;padding:12px;background:#1d1d1f;box-shadow:0 30px 60px rgba(0,0,0,.18)}
+.screen{border-radius:34px;background:#f2f2f7;color:#1d1d1f;padding:34px 16px 20px;display:grid;gap:10px;text-align:left;font-size:13px}
+.screen h4{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.screen .card{background:#fff;border-radius:14px;padding:14px}
+.screen .pass{background:linear-gradient(135deg,#0071e3,#7a3cff);color:#fff}
+.screen .pass b{font-size:20px;display:block}
+.screen .in{background:#34c759;color:#fff;border-radius:14px;padding:14px;text-align:center;font-weight:600;font-size:16px}
+.screen .mini{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.screen .mini b{font-size:20px;display:block}
+.screen .mini span{color:#6e6e73}
 /* BMI */
-.bmi{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.bmi{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 @media(max-width:820px){.bmi{grid-template-columns:1fr}}
-.calc{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:30px;display:grid;gap:14px}
-.calc .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-label.l{font-size:13px;color:var(--mute);font-weight:700;text-transform:uppercase;letter-spacing:.06em;display:grid;gap:6px}
-.field{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--bg);font-size:16px}
-.field:focus{outline:2px solid var(--acc);border-color:transparent}
-.res{border-radius:18px;background:var(--bg);padding:20px;text-align:center}
-.res b{font-size:52px;font-weight:900;letter-spacing:-.04em;display:block;line-height:1.1}
-.res span{color:var(--mute);font-size:15px}
-.bar{height:10px;border-radius:10px;background:linear-gradient(90deg,#5ac8fa 0,#30d158 30%,#ffd60a 60%,#ff453a 100%);position:relative;margin-top:16px}
-.bar i{position:absolute;top:-5px;width:4px;height:20px;background:#fff;border-radius:3px;transition:left .4s;left:0}
+.calc{background:var(--card);border-radius:28px;padding:30px;display:grid;gap:16px;box-shadow:var(--shadow)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label.l{font-size:13px;color:var(--mute);display:grid;gap:6px}
+.field{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);font-size:17px;-webkit-appearance:none;appearance:none}
+.field:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,113,227,.2)}
+.res{text-align:center;padding:8px 0}
+.res b{font-size:64px;font-weight:600;letter-spacing:-.02em;display:block;line-height:1.1}
+.res span{color:var(--mute)}
+.bar{height:8px;border-radius:8px;background:linear-gradient(90deg,#5ac8fa 0,#34c759 30%,#ffcc00 60%,#ff3b30 100%);position:relative;margin-top:18px}
+.bar i{position:absolute;top:-6px;width:20px;height:20px;margin-left:-10px;background:#fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.3);transition:left .4s;left:0}
 /* reviews */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:52px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px}
 @media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{background:var(--card);border-radius:22px;padding:24px 14px}
-.stat b{display:block;font-size:clamp(30px,4.5vw,48px);font-weight:900;letter-spacing:-.04em;color:var(--acc);line-height:1}
+.stat b{display:block;font-size:clamp(34px,4.5vw,56px);font-weight:600;letter-spacing:-.02em;line-height:1.1}
 .stat span{color:var(--mute);font-size:14px}
-.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;text-align:left}
-.rev{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:16px}
-.rev .stars{color:#ffd60a;letter-spacing:2px}
-.rev q{font-size:18px;line-height:1.45;font-weight:500;quotes:"“" "”"}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;text-align:left}
+.rev{background:var(--card);border-radius:28px;padding:30px;display:flex;flex-direction:column;gap:16px;box-shadow:var(--shadow)}
+.rev .stars{color:var(--orange);letter-spacing:2px;font-size:14px}
+.rev q{font-size:19px;line-height:1.4;quotes:"“" "”"}
 .rev .who{display:flex;align-items:center;gap:12px;margin-top:auto}
-.rev .av{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:900;color:var(--ink)}
-.rev .who b{display:block;font-size:15px}.rev .who small{color:var(--acc);font-size:13px;font-weight:700}
-@media(max-width:860px){.reviews{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:20px -16px 0;padding:0 16px 8px;scrollbar-width:none}.reviews::-webkit-scrollbar{display:none}.rev{flex:0 0 84%;scroll-snap-align:center}}
+.rev .av{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:600;color:#fff}
+.rev .who b{display:block;font-size:15px;font-weight:600}.rev .who small{color:var(--mute);font-size:13px}
+@media(max-width:860px){.reviews{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:40px -16px 0;padding:0 16px 8px;scrollbar-width:none}.reviews::-webkit-scrollbar{display:none}.rev{flex:0 0 84%;scroll-snap-align:center}}
 /* trial form */
-.join{position:relative;border-radius:32px;overflow:hidden;padding:64px 28px;--g1:#20240e;--g2:#0b0b0c}
-.join>.ph{position:absolute;inset:0}
-.join>.ph img{opacity:.35;filter:grayscale(1)}
-.join>*:not(.ph){position:relative}
-form.book{max-width:560px;margin:34px auto 0;display:grid;gap:12px;text-align:left}
-form.book .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:560px){form.book .two,.calc .two{grid-template-columns:1fr}}
-form.book .field{background:rgba(11,11,12,.85)}
-form.book .btn{width:100%;justify-content:center}
+form.book{max-width:560px;margin:40px auto 0;display:grid;gap:12px;text-align:left}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+form.book .btn{width:100%;padding:15px}
 /* faq */
 .faq{max-width:760px;margin:40px auto 0;text-align:left}
-.faq details{border-bottom:1px solid var(--line);padding:20px 4px}
-.faq summary{cursor:pointer;font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq details{border-bottom:1px solid var(--line);padding:22px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:19px;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";color:var(--acc);font-size:24px;line-height:1}
-.faq details[open] summary::after{content:"−"}
+.faq summary::after{content:"+";color:var(--mute);font-size:26px;font-weight:300;line-height:1;transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
 .faq p{color:var(--mute);margin-top:10px}
 /* contact */
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:52px}
+.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;margin-top:56px}
 @media(max-width:820px){.contact{grid-template-columns:1fr}}
-.map{border-radius:24px;overflow:hidden;min-height:320px;border:1px solid var(--line);background:var(--card)}
-.map iframe{width:100%;height:100%;min-height:320px;border:0;filter:grayscale(1) invert(.9) contrast(.9)}
-.info{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:30px;display:grid;gap:18px;align-content:start}
-.info div b{display:block;font-size:13px;color:var(--acc);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
-.info a{color:var(--fg)}
-footer.ft{padding:40px 16px calc(100px + env(safe-area-inset-bottom));text-align:center;font-size:13px;color:var(--mute);border-top:1px solid var(--line)}
-footer.ft .brand{justify-content:center;margin-bottom:12px}
+.map{border-radius:28px;overflow:hidden;min-height:340px;background:var(--card)}
+.map iframe{width:100%;height:100%;min-height:340px;border:0}
+.info{background:var(--card);border-radius:28px;padding:32px;display:grid;gap:20px;align-content:start;box-shadow:var(--shadow)}
+.info div b{display:block;font-size:13px;color:var(--mute);font-weight:400;margin-bottom:2px}
+footer.ft{background:var(--bg2);padding:24px 16px calc(90px + env(safe-area-inset-bottom));font-size:12px;color:var(--mute)}
+footer.ft .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px}
+footer.ft a{color:var(--fg)}
 /* floating WhatsApp */
-.wa{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:30;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.wa{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:30;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.22)}
 .wa svg{width:30px;height:30px;fill:#fff}
-.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--fg);color:var(--ink);padding:12px 22px;border-radius:980px;font-size:15px;font-weight:700;z-index:99}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:rgba(29,29,31,.92);color:#fff;padding:12px 22px;border-radius:980px;font-size:15px;z-index:99;backdrop-filter:blur(10px)}
 /* reveal */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
 .rv.show{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.hero>.ph img,.mq div{animation:none}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.hero .shot img{animation:none}html{scroll-behavior:auto}}
 </style>
+<script src="/data.js"></script>
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="mark" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#d4ff3a"/><g fill="#0b0b0c"><rect x="9" y="22" width="7" height="20" rx="2"/><rect x="48" y="22" width="7" height="20" rx="2"/><rect x="16" y="26" width="6" height="12" rx="2"/><rect x="42" y="26" width="6" height="12" rx="2"/><rect x="22" y="30" width="20" height="4" rx="1"/></g></symbol></svg>
-
-<nav class="top">
-<a class="brand" href="#top" aria-label="Iron Pulse Gym home"><svg aria-hidden="true"><use href="#mark"/></svg>Iron<em>Pulse</em></a>
-<div class="links"><a href="#programs">Programs</a><a href="#plans">Membership</a><a href="#trainers">Trainers</a><a href="#schedule">Timetable</a><a href="#contact">Contact</a><a class="pill" href="#join">Free trial</a></div>
-</nav>
+<nav class="top"><div class="w">
+<a class="brand" href="#top" aria-label="Iron Pulse Gym home"><img src="/logo.svg" alt="">Iron Pulse</a>
+<div class="links"><a class="hide" href="#programs">Programs</a><a class="hide" href="#plans">Membership</a><a class="hide" href="#trainers">Trainers</a><a class="hide" href="#schedule">Timetable</a><a class="hide" href="#contact">Contact</a><a href="/app">Log in</a><a class="pill" href="#join">Free trial</a></div>
+</div></nav>
 
 <header class="hero" id="top">
-<div class="ph" data-photo="hero"></div>
-<div class="w">
-<p class="eyebrow">Iron Pulse Gym · Open 5 AM – 11 PM</p>
-<h1>Train hard.<br><span class="hl">Live strong.</span></h1>
-<p class="sub">Modern equipment, certified trainers and plans that fit your budget. Your first workout is on us.</p>
-<div class="btns"><a class="btn" href="#join">Book free trial →</a><a class="btn o" href="#plans">See membership</a></div>
-<div class="badges">
+<p class="eyebrow">Open today · 5 AM – 11 PM</p>
+<h1>Iron Pulse.</h1>
+<p class="sub">Stronger, every day. Modern equipment, certified trainers and your first workout free.</p>
+<div class="btns" style="justify-content:center"><a class="btn" href="#join">Book a free trial</a><a class="more" href="#plans">See membership</a></div>
+<div class="ph shot" data-photo="hero"></div>
+<div class="facts">
 <div><b>1,200+</b><span>Active members</span></div>
 <div><b>12</b><span>Expert trainers</span></div>
-<div><b>8,000</b><span>Sq. ft. floor</span></div>
-</div>
+<div><b>8,000 sq ft</b><span>Training floor</span></div>
 </div>
 </header>
 
-<div class="mqw" aria-hidden="true"><div class="mq"><div id="mq"></div></div></div>
-
 <section class="s" id="programs"><div class="w">
-<p class="eyebrow rv">Programs</p>
-<h2 class="rv">Find your <span class="out">fit.</span></h2>
-<p class="sub rv">From your first push-up to your next personal record, there's a program for every goal.</p>
-<div class="bento" id="bento"></div>
+<h2 class="rv">Find your fit.</h2>
+<p class="sub rv" style="max-width:30ch">From your first push-up to your next personal record.</p>
+<div class="tiles" id="tiles"></div>
 </div></section>
 
-<section class="s" style="background:#101012"><div class="w c">
-<p class="eyebrow rv">Why Iron Pulse</p>
-<h2 class="rv">Built for results.</h2>
-<div class="why">
-<div class="f rv"><i>🏋️</i><h3>Premium equipment</h3><p>Imported machines, free weights up to 50 kg and a dedicated deadlift platform.</p></div>
-<div class="f rv"><i>🧑‍🏫</i><h3>Certified trainers</h3><p>Every member gets a free fitness assessment and a starter workout plan.</p></div>
-<div class="f rv"><i>🥗</i><h3>Diet guidance</h3><p>Simple Indian diet charts for fat loss, muscle gain and healthy living.</p></div>
-<div class="f rv"><i>❄️</i><h3>AC & clean</h3><p>Fully air-conditioned, sanitised daily, with lockers, showers and RO water.</p></div>
-<div class="f rv"><i>👩</i><h3>Ladies batch</h3><p>Separate morning and evening slots with women trainers.</p></div>
-<div class="f rv"><i>🅿️</i><h3>Free parking</h3><p>Safe two-wheeler and car parking right outside the gym.</p></div>
+<section class="s alt"><div class="w c">
+<h2 class="rv">Built for <span class="grad">results.</span></h2>
+<p class="sub rv">Everything you need, nothing you don't.</p>
+<div class="feats">
+<div class="feat rv"><svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg><h3>Premium equipment</h3><p>Imported machines, free weights up to 50 kg and a dedicated deadlift platform.</p></div>
+<div class="feat rv"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg><h3>Certified trainers</h3><p>Every member gets a free fitness assessment and a starter workout plan.</p></div>
+<div class="feat rv"><svg viewBox="0 0 24 24"><path d="M12 21c-4 0-7-3-7-7 0-5 4-8 7-11 3 3 7 6 7 11 0 4-3 7-7 7Z"/><path d="M12 21v-8"/></svg><h3>Diet guidance</h3><p>Simple Indian diet charts for fat loss, muscle gain and healthy living.</p></div>
+<div class="feat rv"><svg viewBox="0 0 24 24"><path d="M12 2v20M4.9 6l14.2 12M4.9 18 19.1 6"/></svg><h3>Air-conditioned & clean</h3><p>Sanitised daily, with lockers, showers and RO drinking water.</p></div>
+<div class="feat rv"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><h3>Ladies batch</h3><p>Separate morning and evening slots with women trainers.</p></div>
+<div class="feat rv"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><h3>Member app</h3><p>One-tap check-in, attendance history and renewal reminders on your phone.</p></div>
 </div>
 </div></section>
 
 <section class="s c" id="plans"><div class="w">
-<p class="eyebrow rv">Membership</p>
 <h2 class="rv">Simple plans.</h2>
 <p class="sub rv">No joining-fee surprises. Pay longer, save more.</p>
-<div class="toggle rv" id="toggle" role="tablist">
+<div class="seg rv" id="toggle" role="tablist">
 <button data-p="1" class="on">Monthly</button><button data-p="3">Quarterly<small>−10%</small></button><button data-p="12">Yearly<small>−25%</small></button>
 </div>
 <div class="plans" id="plans-grid"></div>
 <p class="note rv">Couple & student discounts available. Prices include GST.</p>
 </div></section>
 
-<section class="s" id="trainers" style="background:#101012"><div class="w">
-<p class="eyebrow rv">Trainers</p>
-<h2 class="rv">Coached by <span class="hl">pros.</span></h2>
+<section class="s alt" id="trainers"><div class="w c">
+<h2 class="rv">Coached by pros.</h2>
 <p class="sub rv">Certified, experienced and focused on helping you train safely.</p>
 <div class="team" id="team"></div>
 </div></section>
 
 <section class="s c" id="schedule"><div class="w">
-<p class="eyebrow rv">Timetable</p>
 <h2 class="rv">Group classes.</h2>
-<p class="sub rv">Included in Pro and Elite plans. Pick a day to see the classes.</p>
+<p class="sub rv">Included in Pro and Elite. Pick a day.</p>
 <div class="days" id="days"></div>
-<div class="sched" id="sched"></div>
-<div class="hours">
-<div><b>5:00 AM – 11:00 PM</b><span>Monday – Saturday</span></div>
-<div><b>6:00 AM – 12:00 PM</b><span>Sunday</span></div>
-</div>
+<div class="sched group" id="sched"></div>
+<div class="hours" id="hours"></div>
 </div></section>
 
-<section class="s" id="bmi" style="background:#101012"><div class="w bmi">
+<section class="s alt" id="app"><div class="w promo">
 <div>
-<p class="eyebrow rv">Free tool</p>
+<p class="eyebrow rv">Member app</p>
+<h2 class="rv">Your membership.<br>In your pocket.</h2>
+<p class="sub rv">Members log in with one tap from the link we send on WhatsApp. No password to remember.</p>
+<ul class="rv">
+<li><i style="background:#34c759">✓</i>One-tap check-in and check-out</li>
+<li><i style="background:#0071e3">⏱</i>Attendance history, streaks and workout time</li>
+<li><i style="background:#ff9500">!</i>Plan validity and days left, with renewal reminders</li>
+<li><i style="background:#af52de">★</i>Today's classes and payment receipts</li>
+</ul>
+<div class="btns rv"><a class="btn" href="/app">Open member login</a><a class="more" href="/app">Owner login</a></div>
+</div>
+<div class="phone rv" aria-hidden="true"><div class="screen">
+<span style="color:#6e6e73">Monday</span><h4>Hi, Rohit</h4>
+<div class="in">Check in</div>
+<div class="card pass"><span style="opacity:.8">Pro membership</span><b>23 days left</b><span style="opacity:.8">Valid till 15 Dec</span></div>
+<div class="mini"><div class="card"><b>14</b><span>Visits this month</span></div><div class="card"><b>5 🔥</b><span>Day streak</span></div></div>
+</div></div>
+</div></section>
+
+<section class="s" id="bmi"><div class="w bmi">
+<div>
 <h2 class="rv">Check your BMI.</h2>
-<p class="sub rv">Body Mass Index is a quick first check. Our trainers do a full body-composition test on your free trial day.</p>
-<div class="btns rv"><a class="btn" href="#join">Get full assessment</a></div>
+<p class="sub rv">A quick first check. Our trainers do a full body-composition test on your free trial day.</p>
+<div class="btns rv"><a class="btn" href="#join">Get a full assessment</a></div>
 </div>
 <form class="calc rv" id="bmiForm" onsubmit="return false">
 <div class="two">
@@ -283,28 +313,24 @@ footer.ft .brand{justify-content:center;margin-bottom:12px}
 </form>
 </div></section>
 
-<section class="s c" id="reviews"><div class="w">
-<p class="eyebrow rv">Members</p>
-<h2 class="rv">Real results.</h2>
+<section class="s c alt" id="reviews"><div class="w">
+<h2 class="rv">Real people. Real results.</h2>
 <div class="stats">
 <div class="stat rv"><b>1,200+</b><span>Active members</span></div>
 <div class="stat rv"><b>4.9★</b><span>Google rating</span></div>
 <div class="stat rv"><b>9 yrs</b><span>In fitness</span></div>
-<div class="stat rv"><b>15k kg</b><span>Fat lost together</span></div>
+<div class="stat rv"><b>15k kg</b><span>Lost together</span></div>
 </div>
 <div class="reviews">
-<figure class="rev rv"><div class="stars" aria-label="5 stars">★★★★★</div><q>Lost 14 kg in 5 months. The trainers kept me on track with diet and workouts.</q><figcaption class="who"><span class="av" style="background:#d4ff3a">R</span><div><b>Rohit S.</b><small>−14 kg · Fat loss</small></div></figcaption></figure>
-<figure class="rev rv"><div class="stars" aria-label="5 stars">★★★★★</div><q>The ladies batch is the best thing. Safe, clean and the Zumba classes are so much fun.</q><figcaption class="who"><span class="av" style="background:#ff5a1f">P</span><div><b>Priya M.</b><small>Zumba & toning</small></div></figcaption></figure>
-<figure class="rev rv"><div class="stars" aria-label="5 stars">★★★★★</div><q>Great equipment and serious lifters. My deadlift went from 100 to 180 kg here.</q><figcaption class="who"><span class="av" style="background:#5ac8fa">A</span><div><b>Arjun K.</b><small>Powerlifting</small></div></figcaption></figure>
+<figure class="rev rv"><div class="stars" aria-label="5 stars">★★★★★</div><q>Lost 14 kg in 5 months. The trainers kept me on track with diet and workouts.</q><figcaption class="who"><span class="av" style="background:#0071e3">R</span><div><b>Rohit S.</b><small>−14 kg · Fat loss</small></div></figcaption></figure>
+<figure class="rev rv"><div class="stars" aria-label="5 stars">★★★★★</div><q>The ladies batch is the best thing. Safe, clean and the Zumba classes are so much fun.</q><figcaption class="who"><span class="av" style="background:#ff2d55">P</span><div><b>Priya M.</b><small>Zumba & toning</small></div></figcaption></figure>
+<figure class="rev rv"><div class="stars" aria-label="5 stars">★★★★★</div><q>Great equipment and serious lifters. My deadlift went from 100 to 180 kg here.</q><figcaption class="who"><span class="av" style="background:#ff9500">A</span><div><b>Arjun K.</b><small>Powerlifting</small></div></figcaption></figure>
 </div>
 </div></section>
 
-<section class="s" id="join"><div class="w">
-<div class="join c">
-<div class="ph" data-photo="join"></div>
-<p class="eyebrow rv">Free trial</p>
-<h2 class="rv">Your first day<br>is <span class="hl">free.</span></h2>
-<p class="sub rv">Fill this in and we'll confirm your slot on WhatsApp within the hour.</p>
+<section class="s c" id="join"><div class="w">
+<h2 class="rv">Your first day is <span class="grad">free.</span></h2>
+<p class="sub rv">Tell us when you'd like to come. We'll confirm on WhatsApp within the hour.</p>
 <form class="book" id="bookForm">
 <div class="two"><input class="field" name="name" placeholder="Your name" required autocomplete="name"><input class="field" name="phone" placeholder="Phone / WhatsApp" required inputmode="tel" autocomplete="tel"></div>
 <div class="two">
@@ -312,55 +338,49 @@ footer.ft .brand{justify-content:center;margin-bottom:12px}
 <select class="field" name="time" aria-label="Preferred time"><option>Morning (5–10 AM)</option><option>Afternoon (12–4 PM)</option><option>Evening (5–11 PM)</option></select>
 </div>
 <input class="field" type="date" name="date" required aria-label="Trial date">
-<button class="btn" type="submit">Book on WhatsApp →</button>
+<button class="btn" type="submit">Book on WhatsApp</button>
 </form>
-<p class="note">Or call <a href="tel:+918302615834">+91 83026 15834</a></p>
-</div>
+<p class="note">Or call <a data-tel href="#"></a></p>
 </div></section>
 
-<section class="s c" style="padding-top:20px"><div class="w">
-<p class="eyebrow rv">FAQ</p>
-<h2 class="rv">Questions?</h2>
+<section class="s c alt"><div class="w">
+<h2 class="rv">Questions? Answers.</h2>
 <div class="faq">
 <details class="rv"><summary>I'm a complete beginner. Is that okay?</summary><p>Absolutely. Most of our members started as beginners. You get a free assessment and a trainer shows you every machine on day one.</p></details>
 <details class="rv"><summary>Is there a joining or registration fee?</summary><p>A one-time ₹500 registration fee applies to monthly plans. It's waived on quarterly and yearly plans.</p></details>
+<details class="rv"><summary>How do I log in to the member app?</summary><p>When you join, we send a login link on WhatsApp. Tap it once and you're in — it stays logged in on your phone. You can also log in with your phone number and the 4-digit PIN from the front desk.</p></details>
 <details class="rv"><summary>Can I freeze my membership?</summary><p>Yes. Yearly members can freeze for up to 30 days, and quarterly members for 10 days, for travel or medical reasons.</p></details>
 <details class="rv"><summary>What should I bring?</summary><p>Clean indoor shoes, a towel and a water bottle. Lockers are free; bring your own lock.</p></details>
 <details class="rv"><summary>Do you offer personal training?</summary><p>Yes. One-on-one personal training is included in Elite and available as an add-on for other plans.</p></details>
 </div>
 </div></section>
 
-<section class="s" id="contact" style="background:#101012"><div class="w">
-<p class="eyebrow rv">Visit us</p>
+<section class="s" id="contact"><div class="w">
 <h2 class="rv">Come say hi.</h2>
 <div class="contact">
-<div class="map rv"><iframe title="Gym location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Ranivara,Rajasthan&output=embed"></iframe></div>
+<div class="map rv"><iframe id="map" title="Gym location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 <div class="info rv">
-<div><b>Address</b>Main Road, near Bus Stand, Ranivara, Rajasthan</div>
-<div><b>Phone / WhatsApp</b><a href="tel:+918302615834">+91 83026 15834</a></div>
-<div><b>Hours</b>Mon – Sat: 5:00 AM – 11:00 PM<br>Sunday: 6:00 AM – 12:00 PM</div>
-<div class="btns" style="margin-top:4px"><a class="btn" href="https://wa.me/918302615834" target="_blank" rel="noopener">WhatsApp us</a><a class="btn o" href="https://www.google.com/maps/search/?api=1&query=Ranivara,Rajasthan" target="_blank" rel="noopener">Directions</a></div>
+<div><b>Address</b><span id="addr"></span></div>
+<div><b>Phone / WhatsApp</b><a data-tel href="#"></a></div>
+<div><b>Hours</b><span id="hoursTxt"></span></div>
+<div class="btns" style="margin-top:4px;gap:20px"><a class="btn" data-wa href="#" target="_blank" rel="noopener">WhatsApp us</a><a class="more" id="dir" href="#" target="_blank" rel="noopener">Directions</a></div>
 </div>
 </div>
 </div></section>
 
-<footer class="ft">
-<a class="brand" href="#top"><svg aria-hidden="true"><use href="#mark"/></svg>Iron<em>Pulse</em></a>
-<p>Main Road, Ranivara, Rajasthan · <a href="tel:+918302615834">+91 83026 15834</a></p>
-<p style="margin-top:6px">© <span id="y"></span> Iron Pulse Gym. All rights reserved.</p>
-</footer>
+<footer class="ft"><div class="w">
+<span>© <span id="y"></span> Iron Pulse Gym. All rights reserved.</span>
+<span><a href="/app">Member & owner login</a> · <a data-tel href="#"></a></span>
+</div></footer>
 
-<a class="wa" href="https://wa.me/918302615834?text=Hi%20Iron%20Pulse%20Gym%2C%20I%20want%20to%20know%20about%20membership." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.4-.2Z"/></svg></a>
+<a class="wa" data-wa href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.4-.2Z"/></svg></a>
 
 <script>
 (function(){
-/* ======== EDIT HERE: gym name, phone, photos, plans, trainers, classes ======== */
-var GYM='Iron Pulse Gym', PHONE='918302615834';
+var G=window.GYM;
+/* ======== EDIT HERE: photos, programs, trainers (plans, classes & phone are in data.js) ======== */
 var U=function(id,w){return 'https://images.unsplash.com/'+id+'?auto=format&fit=crop&w='+(w||1000)+'&q=70'};
-var PHOTOS={
- hero:U('photo-1534438327276-14e5300c3a48',2000),
- join:U('photo-1540497077202-7c8a3999166f',1600)
-};
+var PHOTOS={hero:U('photo-1534438327276-14e5300c3a48',2200)};
 var PROGRAMS=[ // [photo id, title, text, wide?]
  ['photo-1581009146145-b5ef050c2e1e','Strength Training','Free weights, racks and machines to build real muscle and power.',1],
  ['photo-1571019613454-1cb2f99b2d8b','Weight Loss','Cardio, HIIT and a diet plan made for steady, lasting fat loss.',1],
@@ -368,63 +388,51 @@ var PROGRAMS=[ // [photo id, title, text, wide?]
  ['photo-1544367567-0f2fcb009e0b','Yoga','Flexibility, breathing and calm. Morning and evening batches.',0],
  ['photo-1518611012118-696072aa579a','Zumba & Dance','Fun dance cardio. No experience needed, just energy.',0]
 ];
-// [name, monthly price, features (prefix "-" = not included), highlight?]
-var PLANS=[
- ['Basic',999,['Full gym floor access','Locker & shower','Free fitness assessment','-Group classes','-Personal trainer'],0],
- ['Pro',1499,['Everything in Basic','All group classes','Monthly diet chart','Progress check every month','-Personal trainer'],1],
- ['Elite',2999,['Everything in Pro','Personal trainer (12 sessions/mo)','Custom diet & workout plan','Body-composition analysis','Priority slot booking'],0]
-];
-var DISC={1:0,3:.10,12:.25};
 var TRAINERS=[
  ['photo-1567013127542-490d757e51fc','Vikram Rathore','Head Coach','Strength & powerlifting · 10 yrs'],
  ['photo-1594737625785-a6cbdabd333c','Neha Sharma','Yoga & Zumba','Certified yoga instructor · 7 yrs'],
  ['photo-1571902943202-507ec2618e8f','Aman Choudhary','Fat-loss Coach','HIIT & nutrition · 6 yrs'],
  ['photo-1550345332-09e3ac987658','Karan Mehta','Personal Trainer','Bodybuilding & rehab · 8 yrs']
 ];
-var DAYS=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-var CLASSES={ // [time, class, trainer, tag]
- Mon:[['6:00 AM','Yoga Flow','Neha',''],['7:30 AM','HIIT Burn','Aman','Hot'],['6:00 PM','Strength Basics','Vikram',''],['7:30 PM','Zumba','Neha','Hot']],
- Tue:[['6:00 AM','CrossFit','Aman',''],['7:00 AM','Ladies Toning','Neha','Ladies'],['6:30 PM','Power Yoga','Neha',''],['8:00 PM','Core Blast','Karan','']],
- Wed:[['6:00 AM','Yoga Flow','Neha',''],['7:30 AM','HIIT Burn','Aman','Hot'],['6:00 PM','Deadlift Clinic','Vikram',''],['7:30 PM','Zumba','Neha','Hot']],
- Thu:[['6:00 AM','CrossFit','Aman',''],['7:00 AM','Ladies Toning','Neha','Ladies'],['6:30 PM','Functional Fit','Karan',''],['8:00 PM','Core Blast','Karan','']],
- Fri:[['6:00 AM','Yoga Flow','Neha',''],['7:30 AM','HIIT Burn','Aman','Hot'],['6:00 PM','Strength Basics','Vikram',''],['7:30 PM','Zumba Party','Neha','Hot']],
- Sat:[['7:00 AM','Bootcamp','Aman','Hot'],['9:00 AM','Stretch & Mobility','Neha',''],['6:00 PM','Open Lifting','Vikram','']],
- Sun:[['7:00 AM','Community Run','Aman','Free'],['9:00 AM','Yoga & Meditation','Neha','']]
-};
 /* ======================================================================== */
 
 var $=function(s){return document.querySelector(s)},$$=function(s){return [].slice.call(document.querySelectorAll(s))};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
 var img=function(src,alt,eager){return '<img src="'+esc(src)+'" alt="'+esc(alt)+'"'+(eager?' fetchpriority="high"':' loading="lazy"')+' decoding="async" onerror="this.remove()">'};
 var inr=function(n){return '₹'+Math.round(n).toLocaleString('en-IN')};
-var HUES=[[75,120],[20,350],[200,240],[280,320],[160,200]];
-var g=function(i){var h=HUES[i%HUES.length];return '--g1:hsl('+h[0]+',60%,30%);--g2:hsl('+h[1]+',50%,10%)'};
+var HUES=[[210,260],[20,350],[160,200],[280,320],[40,10]];
+var g=function(i){var h=HUES[i%HUES.length];return '--g1:hsl('+h[0]+',55%,45%);--g2:hsl('+h[1]+',45%,20%)'};
+
+// contact details from data.js
+$$('[data-tel]').forEach(function(a){a.href='tel:+'+G.phone;a.textContent=G.phoneLabel});
+$$('[data-wa]').forEach(function(a){a.href='https://wa.me/'+G.phone+'?text='+encodeURIComponent('Hi '+G.name+', I want to know about membership.')});
+$('#addr').textContent=G.address;
+$('#map').src='https://www.google.com/maps?q='+encodeURIComponent(G.mapQuery)+'&output=embed';
+$('#dir').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(G.mapQuery);
+$('#hoursTxt').innerHTML=G.hours.map(function(h){return esc(h[1])+': '+esc(h[0])}).join('<br>');
+$('#hours').innerHTML=G.hours.map(function(h){return '<div><b>'+esc(h[0])+'</b><span>'+esc(h[1])+'</span></div>'}).join('');
 
 $('[data-photo="hero"]').innerHTML=img(PHOTOS.hero,'Gym floor with weights',true);
-$('[data-photo="join"]').innerHTML=img(PHOTOS.join,'Gym interior');
-var words=['Strength','Cardio','CrossFit','Yoga','Zumba','Personal training','Diet plans','Ladies batch'];
-$('#mq').innerHTML=(words.concat(words)).map(function(w){return '<span>'+w+'</span><span>✦</span>'}).join('');
-
-$('#bento').innerHTML=PROGRAMS.map(function(p,i){return '<div class="ph prog rv'+(p[3]?' wide':'')+'" style="'+g(i)+'">'+img(U(p[0]),p[1])+'<b>0'+(i+1)+'</b><h3>'+esc(p[1])+'</h3><p>'+esc(p[2])+'</p></div>'}).join('');
+$('#tiles').innerHTML=PROGRAMS.map(function(p,i){return '<div class="ph tile rv'+(p[3]?' wide':'')+'" style="'+g(i)+'">'+img(U(p[0]),p[1])+'<small>Program</small><h3>'+esc(p[1])+'</h3><p>'+esc(p[2])+'</p></div>'}).join('');
 
 var period=1;
 function drawPlans(){
  $$('#toggle button').forEach(function(b){b.classList.toggle('on',+b.getAttribute('data-p')===period)});
- $('#plans-grid').innerHTML=PLANS.map(function(p){
-  var total=p[1]*period*(1-DISC[period]);
+ $('#plans-grid').innerHTML=G.plans.map(function(p){
+  var total=p[1]*period*(1-(G.discount[period]||0));
   var lbl=period===1?'/month':period===3?'/3 months':'/year';
-  var per=period===1?'':inr(total/period)+' per month · save '+inr(p[1]*period-total);
-  return '<div class="plan'+(p[3]?' top':'')+'">'+(p[3]?'<span class="tag">Most popular</span>':'')+'<h3>'+esc(p[0])+'</h3><div class="price">'+inr(total)+'<small> '+lbl+'</small></div><div class="per">'+per+'</div><ul>'+p[2].map(function(f){return f[0]==='-'?'<li class="no">'+esc(f.slice(1))+'</li>':'<li>'+esc(f)+'</li>'}).join('')+'</ul><button class="btn" data-plan="'+esc(p[0])+'" data-price="'+Math.round(total)+'" data-lbl="'+lbl+'">Join '+esc(p[0])+'</button></div>';
+  var per=period===1?'':inr(total/period)+'/mo · save '+inr(p[1]*period-total);
+  return '<div class="plan'+(p[3]?' top':'')+'"><span class="tag">'+(p[3]?'Most popular':'')+'</span><h3>'+esc(p[0])+'</h3><div class="price">'+inr(total)+'<small> '+lbl+'</small></div><div class="per">'+per+'</div><ul>'+p[2].map(function(f){return f[0]==='-'?'<li class="no">'+esc(f.slice(1))+'</li>':'<li>'+esc(f)+'</li>'}).join('')+'</ul><button class="btn" data-plan="'+esc(p[0])+'" data-price="'+Math.round(total)+'" data-lbl="'+lbl+'">Join '+esc(p[0])+'</button></div>';
  }).join('');
 }
 $('#toggle').onclick=function(e){var b=e.target.closest('button');if(b){period=+b.getAttribute('data-p');drawPlans()}};
 
-$('#team').innerHTML=TRAINERS.map(function(t,i){return '<div class="tr rv"><div class="ph" style="'+g(i)+'">'+img(U(t[0],700),t[1])+'</div><div class="t"><h3>'+esc(t[1])+'</h3><p>'+esc(t[2])+'</p><small>'+esc(t[3])+'</small></div></div>'}).join('');
+$('#team').innerHTML=TRAINERS.map(function(t,i){return '<div class="tr rv"><div class="ph" style="'+g(i)+'">'+img(U(t[0],500),t[1])+'</div><h3>'+esc(t[1])+'</h3><p>'+esc(t[2])+'</p><small>'+esc(t[3])+'</small></div>'}).join('');
 
-var today=DAYS[(new Date().getDay()+6)%7],day=today;
+var today=G.days[(new Date().getDay()+6)%7],day=today;
 function drawSched(){
- $('#days').innerHTML=DAYS.map(function(d){return '<button class="chip'+(d===day?' on':'')+'" data-day="'+d+'">'+d+(d===today?' · Today':'')+'</button>'}).join('');
- $('#sched').innerHTML=(CLASSES[day]||[]).map(function(c){return '<div class="slot"><time>'+c[0]+'</time><div><b>'+esc(c[1])+'</b><span>with '+esc(c[2])+'</span></div>'+(c[3]?'<em>'+esc(c[3])+'</em>':'<span></span>')+'</div>'}).join('');
+ $('#days').innerHTML=G.days.map(function(d){return '<button class="'+(d===day?'on':'')+'" data-day="'+d+'">'+(d===today?'Today':d)+'</button>'}).join('');
+ $('#sched').innerHTML=(G.classes[day]||[]).map(function(c){return '<div class="row"><time>'+c[0]+'</time><div><b>'+esc(c[1])+'</b><span>with '+esc(c[2])+'</span></div>'+(c[3]?'<em>'+esc(c[3])+'</em>':'')+'</div>'}).join('');
 }
 $('#days').onclick=function(e){var b=e.target.closest('[data-day]');if(b){day=b.getAttribute('data-day');drawSched()}};
 
@@ -433,22 +441,22 @@ function bmi(){
  if(!h||!w||h<1||w<20){$('#bmiVal').textContent='—';$('#bmiTxt').textContent='Enter height and weight';return}
  var b=w/(h*h),t=b<18.5?'Underweight':b<25?'Healthy weight':b<30?'Overweight':'Obese';
  $('#bmiVal').textContent=b.toFixed(1);$('#bmiTxt').textContent=t;
- $('#bmiPin').style.left='calc('+Math.max(0,Math.min(100,(b-15)/(35-15)*100))+'% - 2px)';
+ $('#bmiPin').style.left=Math.max(0,Math.min(100,(b-15)/(35-15)*100))+'%';
 }
 $('#h').oninput=$('#kg').oninput=bmi;
 
-function wa(msg){window.open('https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg),'_blank','noopener')}
+function wa(msg){window.open('https://wa.me/'+G.phone+'?text='+encodeURIComponent(msg),'_blank','noopener')}
 function toast(t){var e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(function(){e.remove()},2600)}
 document.addEventListener('click',function(e){
  var b=e.target.closest&&e.target.closest('[data-plan]');
- if(b){wa('Hi '+GYM+', I want to join the '+b.getAttribute('data-plan')+' plan ('+inr(+b.getAttribute('data-price'))+' '+b.getAttribute('data-lbl')+'). Please share the details.');toast('Opening WhatsApp…')}
+ if(b){wa('Hi '+G.name+', I want to join the '+b.getAttribute('data-plan')+' plan ('+inr(+b.getAttribute('data-price'))+' '+b.getAttribute('data-lbl')+'). Please share the details.');toast('Opening WhatsApp…')}
 });
 $('#bookForm').onsubmit=function(e){
  e.preventDefault();var f=new FormData(e.target);
- wa('Hi '+GYM+', I want to book a FREE TRIAL.\nName: '+f.get('name')+'\nPhone: '+f.get('phone')+'\nGoal: '+f.get('goal')+'\nTime: '+f.get('time')+'\nDate: '+f.get('date'));
+ wa('Hi '+G.name+', I want to book a FREE TRIAL.\nName: '+f.get('name')+'\nPhone: '+f.get('phone')+'\nGoal: '+f.get('goal')+'\nTime: '+f.get('time')+'\nDate: '+f.get('date'));
  e.target.reset();toast('Opening WhatsApp…');
 };
-var d=$('input[name=date]');d.min=new Date().toISOString().slice(0,10);
+$('input[name=date]').min=new Date().toISOString().slice(0,10);
 
 $('#y').textContent=new Date().getFullYear();
 drawPlans();drawSched();bmi();
